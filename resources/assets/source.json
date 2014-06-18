@@ -1,0 +1,16 @@
+{
+"frames": {
+	"background": {"x":101, "y":341, "w":100, "h":100, "offX":0,"offY":0},
+	"backtile": {"x":0, "y":186, "w":105, "h":105, "offX":0,"offY":0},
+	"continueButton_over": {"x":101, "y":292, "w":100, "h":48, "offX":0,"offY":0},
+	"continueButton_up": {"x":0, "y":442, "w":100, "h":48, "offX":0,"offY":0},
+	"frontground": {"x":0, "y":341, "w":100, "h":100, "offX":0,"offY":0},
+	"menu": {"x":0, "y":0, "w":502, "h":105, "offX":0,"offY":0},
+	"resetButton_over": {"x":101, "y":442, "w":100, "h":48, "offX":0,"offY":0},
+	"resetButton_up": {"x":0, "y":292, "w":100, "h":48, "offX":0,"offY":0},
+	"result_failed": {"x":0, "y":106, "w":237, "h":38, "offX":0,"offY":1},
+	"result_sucess": {"x":0, "y":145, "w":234, "h":40, "offX":1,"offY":0}
+
+},
+"file": "source.png"
+}

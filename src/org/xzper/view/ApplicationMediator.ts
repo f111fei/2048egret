@@ -1,0 +1,152 @@
+
+
+/// <reference path="../../../egret.d.ts"/>
+/// <reference path="../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
+/// <reference path="../app/AppContainer.ts"/>
+/// <reference path="../controller/commands/GameCommand.ts"/>
+/// <reference path="../model/common/CommonData.ts"/>
+
+module game {
+
+	export class ApplicationMediator extends puremvc.Mediator implements puremvc.IMediator{
+		public static NAME:string = "ApplicationMediator";
+		public constructor(viewComponent:any){
+			super(ApplicationMediator.NAME, viewComponent);
+
+            //为PC和移动端设置不同的移动策略
+            if(!egret.Browser.getInstance().isMobile)
+            {
+                var self = this;
+                document.addEventListener("keydown",function(){
+                    switch (event.keyCode) {
+                        case 38:
+                            self.doMove(0);
+                            break;
+                        case 39:
+                            self.doMove(1);
+                            break;
+                        case 40:
+                            self.doMove(2);
+                            break;
+                        case 37:
+                            self.doMove(3);
+                            break;
+                    }
+                });
+            }
+            else
+            {
+                this.main.addEventListener(egret.TouchEvent.TOUCH_BEGIN , this.mouseDownHandle , this)
+            }
+		}
+
+        private downPoint:egret.Point;
+        private movePoint:egret.Point;
+        private mouseDownHandle(event:egret.TouchEvent):void
+        {
+            egret.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.stage_mouseMoveHandler,this);
+            egret.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.stage_mouseUpHandler,this);
+            egret.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,this.stage_mouseUpHandler,this);
+
+            this.downPoint = this.main.globalToLocal(event.stageX, event.stageY);
+        }
+
+        private needMove:boolean;
+        private stage_mouseMoveHandler(event:egret.TouchEvent):void{
+            if(!this.movePoint)
+                this.movePoint = new egret.Point();
+            this.movePoint.x = event.stageX;
+            this.movePoint.y = event.stageY;
+            if (this.needMove)
+                return;
+            this.needMove = true;
+        }
+
+        public stage_mouseUpHandler(event:egret.Event):void{
+            egret.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,
+                this.stage_mouseMoveHandler,
+                this);
+            egret.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_END,
+                this.stage_mouseUpHandler,
+                this);
+            egret.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,
+                this.stage_mouseUpHandler,
+                this);
+            if(this.needMove){
+                this.updateWhenMouseUp();
+                this.needMove = false;
+            }
+        }
+
+        /**
+         * 移动设备上，判断移动方向
+         */
+        private updateWhenMouseUp():void
+        {
+            var p:egret.Point = this.main.globalToLocal(this.movePoint.x, this.movePoint.y ,egret.Point.identity);
+            var offSetX:number = p.x - this.downPoint.x;
+            var offSetY:number = p.y - this.downPoint.y;
+
+            if(offSetY<0 && Math.abs(offSetY)>Math.abs(offSetX))  //上
+            {
+                this.doMove(0);
+            }
+            else if(offSetX>0 && offSetX>Math.abs(offSetY))  //右
+            {
+                this.doMove(1);
+            }
+            else if(offSetY>0 && offSetY>Math.abs(offSetX))
+            {
+                this.doMove(2);
+            }
+            else if(offSetX<0 && Math.abs(offSetX)>Math.abs(offSetY))
+            {
+                this.doMove(3);
+            }
+        }
+
+
+        /**
+         * 移动格子
+         * @param direction 方向 0上 1右 2下 3左
+         */
+        private doMove(direction:number):void
+        {
+            if(CommonData.isRunning && (egret.getTimer() - this.lastMoveTime)>=100) {
+                switch (direction) {
+                    case 0:
+                        this.sendNotification(GameCommand.USER_MOVE, 0);    //上
+                        break;
+                    case 1:
+                        this.sendNotification(GameCommand.USER_MOVE, 1);    //右
+                        break;
+                    case 2:
+                        this.sendNotification(GameCommand.USER_MOVE, 2);    //下
+                        break;
+                    case 3:
+                        this.sendNotification(GameCommand.USER_MOVE, 3);    //左
+                        break;
+                }
+                this.lastMoveTime = egret.getTimer();
+            }
+        }
+		
+		/**
+		 * 上次移动的时间 ， 防止过快设置移动
+		 */
+		private lastMoveTime:number = 0;
+
+		public listNotificationInterests():Array<any>{
+			return [];
+		}
+		
+		public handleNotification(notification:puremvc.INotification):void{
+			switch(notification.getName()){
+			}
+		}
+		
+		public get main():AppContainer{
+			return <AppContainer><any> (this.viewComponent);
+		}
+	}
+}
