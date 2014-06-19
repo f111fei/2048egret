@@ -91,12 +91,7 @@ class Main extends egret.DisplayObjectContainer{
      */
     private createGameScene():void {
         var appContainer:game.AppContainer = new game.AppContainer();
-        appContainer.visible = false;
         this.addChild(appContainer);
-
-        egret.callLater(function():void{
-            appContainer.visible = true;		//延迟显示，优化体验
-        },this);
         game.ApplicationFacade.getInstance().startUp(appContainer);
     }
 }
