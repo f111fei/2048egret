@@ -29,7 +29,8 @@ module game {
 			switch(notification.getName()){
 				case GameProxy.UPDATE_SCORE:{
 					this.mainGameUI.scoreLabel.text = data["totalScore"].toString();
-					this.mainGameUI.playScoreEffect(data["addScore"]);
+                    this.mainGameUI.highScoreLabel.text = data["highScore"].toString();
+                    this.mainGameUI.playScoreEffect(data["addScore"]);
 					break;
 				}
 

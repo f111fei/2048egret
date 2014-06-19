@@ -69,9 +69,9 @@ egret_h5.startGame = function () {
 
     //设置屏幕适配策略
     var container = new egret.EqualToFrame();
-    var content = egret.Browser.getInstance().isMobile ? new egret.FixedWidth() : new egret.FixedSize(510, 650);
+    var content = egret.Browser.getInstance().isMobile ? new egret.FixedWidth() : new egret.FixedSize(520, 700);
     var policy = new egret.ResolutionPolicy(container, content);
-    egret.StageDelegate.getInstance().setDesignSize(510, 650, policy);
+    egret.StageDelegate.getInstance().setDesignSize(520, 700, policy);
 
     egret.RendererContext.CONTENT_SCALE_FACTOR = 1;
     context.run();

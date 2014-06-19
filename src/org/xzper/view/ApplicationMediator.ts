@@ -112,7 +112,7 @@ module game {
          */
         private doMove(direction:number):void
         {
-            if(CommonData.isRunning && (egret.getTimer() - this.lastMoveTime)>=100) {
+            if(CommonData.isRunning && (egret.getTimer() - this.lastMoveTime)>=200) {
                 switch (direction) {
                     case 0:
                         this.sendNotification(GameCommand.USER_MOVE, 0);    //上

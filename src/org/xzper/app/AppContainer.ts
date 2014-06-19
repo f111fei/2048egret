@@ -35,7 +35,7 @@ module game {
 			this.addElement(this.mainMenuUI);
 
 			this.mainGameUI = new MainGameUI();
-			this.mainGameUI.top = 130;
+			this.mainGameUI.top = 140;
 			this.mainGameUI.horizontalCenter = 0;
 			this.addElement(this.mainGameUI);
 		}

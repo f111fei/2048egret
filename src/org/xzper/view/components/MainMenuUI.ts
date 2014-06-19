@@ -10,6 +10,7 @@ module game {
 	export class MainMenuUI extends egret.SkinnableComponent{
 		public addLabel:egret.Label;
 		public scoreLabel:egret.Label;
+        public highScoreLabel:egret.Label;
 		public resetButton:egret.Button;
 		
 		public constructor(){

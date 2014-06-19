@@ -12,13 +12,11 @@ module game {
 		 * 分数更新 , body  {totalScore:int , addScore:int}
 		 */
 		public static UPDATE_SCORE:string = "update_score";
-		
+
 		public static GAME_RESULT:string = "game_result";
 		
 		public static RESET_SCORE:string = "reset_score";
 		
-		private _score:number = 0;
-
 		private won:boolean = false;
 		private over:boolean = false;
 		
@@ -26,13 +24,23 @@ module game {
 		public constructor(){
 			super(GameProxy.NAME);
 		}
-		
-		/**
+
+        private _score:number = 0;
+        /**
 		 * 游戏分数
 		 */
 		public get score():number{
 			return this._score;
 		}
+
+        private _highScore:number = 0;
+
+        /**
+         * 最高分
+         */
+        public get highScore():number{
+            return this._highScore;
+        }
 		
 		/**
 		 * 重置游戏数据
@@ -51,7 +59,9 @@ module game {
 		public updateScore(addScore:number):void{
 			if(addScore != 0){
 				this._score += addScore;
-				this.sendNotification(GameProxy.UPDATE_SCORE , {"totalScore":this.score , "addScore":addScore});
+                if(this._score > this._highScore)
+                    this._highScore = this._score;
+				this.sendNotification(GameProxy.UPDATE_SCORE , {"totalScore":this.score , "highScore":this.highScore ,"addScore":addScore});
 			}
 		}
 		
