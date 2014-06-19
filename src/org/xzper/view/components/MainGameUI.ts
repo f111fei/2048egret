@@ -79,19 +79,20 @@ module game {
 		public createTile(tileVO:TileVO):void{
 			var tile:TileUI = <TileUI>(ObjectPool.getPool("game.TileUI").borrowObject());  //从对象池创建
 			tile.tileVO = tileVO;
+            tile.x = tileVO.x * (tile.width + this.gap) + tile.width/2;
+            tile.y = tileVO.y * (tile.height + this.gap) + tile.height/2;
 			tile.includeInLayout = false;
-			tile.x = tileVO.x * (tile.width+this.gap) + tile.width/2;
-			tile.y = tileVO.y * (tile.height+this.gap) + tile.height/2;
-
-            //延迟添加格子，保证其他的格子移动完成后添加。
-            egret.Ticker.getInstance().setTimeout(function():void{
-                this.tileGroup.addElement(tile);
+            tile.visible = false;
+            this.tileGroup.addElement(tile);
+            var showTile:Function = function():void{
+                tile.visible = true;
                 if(tileVO.merged){
                     tile.playScale(true);
                 }else{
                     tile.playScale(false);
                 }
-            } , this , 100);
+            };
+            egret.Ticker.getInstance().setTimeout(showTile , this , 100);   //延迟显示格子，保证其他的格子移动完成后显示
 		}
 
         /**
@@ -113,12 +114,11 @@ module game {
         public mergedTile(tileVO:TileVO):void{
             var tileFrom:TileUI = this.getTileUI(tileVO.previousPosition.x , tileVO.previousPosition.y);
             var tileTo:TileUI = this.getTileUI(tileVO.x , tileVO.y);
-
-            if(tileFrom){
+            if(tileFrom && tileTo){
                 this.tileGroup.setElementIndex(tileFrom,0);  //将要消失的格子沉底，
                 var self:MainGameUI = this;
-                tileFrom.tileVO.x = tileVO.x;
-                tileFrom.tileVO.y = tileVO.y;
+                tileFrom.tileVO.x = -1;
+                tileFrom.tileVO.y = -1;
                 tileFrom.playmove(tileVO.x * (tileFrom.width+this.gap)+tileFrom.width/2 ,tileVO.y * (tileFrom.height+this.gap)+tileFrom.height/2 );
                 var moveComplete:Function = function(event:egret.Event):void{
                     tileFrom.removeEventListener("moveComplete" , moveComplete , self);
@@ -136,10 +136,10 @@ module game {
 		 * 清除一个格子
 		 */
 		public removeTile(tileVO:TileVO):void{
-			var tile:TileUI = this.getTileUI(tileVO.x , tileVO.y);
-			if(tile){
-				this.tileGroup.removeElement(tile);
-                ObjectPool.getPool("game.TileUI").returnObject(tile);
+			var tileUI:TileUI = this.getTileUI(tileVO.x , tileVO.y);
+			if(tileUI){
+				this.tileGroup.removeElement(tileUI);
+                ObjectPool.getPool("game.TileUI").returnObject(tileUI);
 			}
 		}
 		
@@ -160,7 +160,13 @@ module game {
 		 * 清除所有
 		 */
 		public clearTiles():void{
-			this.tileGroup.removeAllElements();
+            var num:number = this.tileGroup.numElements;
+            var tileUI:TileUI;
+            for(var i:number = num - 1 ; i >= 0 ; i--)
+            {
+                tileUI = <TileUI> this.tileGroup.removeElementAt(i);
+                ObjectPool.getPool("game.TileUI").returnObject(tileUI);
+            }
 		}
 	}
 }
