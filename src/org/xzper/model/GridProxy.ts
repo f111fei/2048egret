@@ -9,11 +9,18 @@ module game {
 
 	export class GridProxy extends puremvc.Proxy implements puremvc.IProxy{
 		public static NAME:string = "GridProxy";
-		
+
+        /**
+         * 重置格子
+         */
 		public static RESET_TILE:string = "reset_tile";
 		public static MOVE_TILE:string = "move_tile";
 		public static INSERT_TILE:string = "insert_tile";
 		public static REMOVE_TILE:string = "remove_tile";
+
+        /**
+         * 合并格子
+         */
         public static MERGED_TILE:string = "merged_tile";
 		
 		private cells:Array<any> = [];

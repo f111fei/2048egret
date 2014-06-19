@@ -97,7 +97,6 @@ class Main extends egret.DisplayObjectContainer{
         egret.callLater(function():void{
             appContainer.visible = true;		//延迟显示，优化体验
         },this);
-
         game.ApplicationFacade.getInstance().startUp(appContainer);
     }
 }

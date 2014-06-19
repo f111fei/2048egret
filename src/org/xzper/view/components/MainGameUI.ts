@@ -83,12 +83,16 @@ module game {
 			tile.includeInLayout = false;
 			tile.x = tileVO.x * (tile.width+this.gap) + tile.width/2;
 			tile.y = tileVO.y * (tile.height+this.gap) + tile.height/2;
-			this.tileGroup.addElement(tile);
-			if(tileVO.merged){
-				tile.playScale(true);
-			}else{
-				tile.playScale(false);
-			}
+
+            //延迟添加格子，保证其他的格子移动完成后添加。
+            egret.Ticker.getInstance().setTimeout(function():void{
+                this.tileGroup.addElement(tile);
+                if(tileVO.merged){
+                    tile.playScale(true);
+                }else{
+                    tile.playScale(false);
+                }
+            } , this , 100);
 		}
 
         /**
