@@ -119,16 +119,16 @@ module game {
                 var self:MainGameUI = this;
                 tileFrom.tileVO.x = tileVO.x;
                 tileFrom.tileVO.y = tileVO.y;
-                tileFrom.playmove(
-                    tileVO.x * (tileFrom.width+this.gap)+tileFrom.width/2 ,
-                    tileVO.y * (tileFrom.height+this.gap)+tileFrom.height/2 ,
-                    function():void{
+                tileFrom.playmove(tileVO.x * (tileFrom.width+this.gap)+tileFrom.width/2 ,tileVO.y * (tileFrom.height+this.gap)+tileFrom.height/2 );
+                var moveComplete:Function = function(event:egret.Event):void{
+                    tileFrom.removeEventListener("moveComplete" , moveComplete , self);
+                    if(tileFrom.parent)
                         self.tileGroup.removeElement(tileFrom);
-                        ObjectPool.getPool("game.TileUI").returnObject(tileFrom);   //回收到对象池
-                        tileTo.tileVO = tileVO;
-                        tileTo.playScale(true);
-                    }
-                );
+                    ObjectPool.getPool("game.TileUI").returnObject(tileFrom);   //回收到对象池
+                    tileTo.tileVO = tileVO;
+                    tileTo.playScale(true);
+                };
+                tileFrom.addEventListener("moveComplete" , moveComplete ,this);
             }
         }
 

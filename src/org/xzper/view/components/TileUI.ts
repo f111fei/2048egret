@@ -66,15 +66,11 @@ module game {
         /**
          * 移动格子
          */
-		public playmove(xTo:number, yTo:number , compelete:Function = null):void{
-            if(compelete == null)
-            {
-                egret.Tween.get(this).to({x:xTo , y:yTo} , 100);
-            }
-            else
-            {
-                egret.Tween.get(this).to({x:xTo , y:yTo} , 100).call(compelete , this);
-            }
+		public playmove(xTo:number, yTo:number):void{
+            var self:TileUI = this;
+            egret.Tween.get(this).to({x:xTo , y:yTo} , 100).call(function():void{
+                self.dispatchEvent(new egret.Event("moveComplete"));
+            } , this);
 		}
 	}
 }
