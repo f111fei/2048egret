@@ -3,6 +3,11 @@
 module game {
 
 	export class CommonData{
+        /**
+         * 游戏胜利时的数字
+         */
+        public static winValue:number = 2048;
+
 		/**
 		 * 游戏的大小
 		 */

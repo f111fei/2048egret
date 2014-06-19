@@ -77,7 +77,7 @@ module game {
 						//更新分数
 						score += newValue;
 
-						if(newValue == 2048){   //2048游戏结束
+						if(newValue == CommonData.winValue){   //游戏结束
 							won = true;
 						}
 					} else {
