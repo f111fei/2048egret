@@ -17,7 +17,7 @@ module game {
             if(!egret.Browser.getInstance().isMobile)
             {
                 var self = this;
-                document.addEventListener("keydown",function(){
+                document.addEventListener("keydown",function(event:KeyboardEvent){
                     switch (event.keyCode) {
                         case 38:
                             self.doMove(0);
@@ -112,7 +112,7 @@ module game {
          */
         private doMove(direction:number):void
         {
-            if(CommonData.isRunning && (egret.getTimer() - this.lastMoveTime)>=200) {
+            if(CommonData.isRunning && (egret.getTimer() - this.lastMoveTime)>=100) {
                 switch (direction) {
                     case 0:
                         this.sendNotification(GameCommand.USER_MOVE, 0);    //上
