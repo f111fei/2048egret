@@ -48,7 +48,7 @@ module game {
 
             //背景图
             var backUIAsset:egret.UIAsset = new egret.UIAsset();
-            backUIAsset.width = size*105+(size+1)*this.gap;
+            backUIAsset.width = size*TileUI.size + (size+1)*this.gap;
             backUIAsset.height = backUIAsset.width;
 
             //使用九宫格
@@ -65,8 +65,7 @@ module game {
 				for (var j:number = 0; j < size; j++) {
                     tile = new egret.UIAsset();
                     tile.source = "source.backtile";
-					tile.width = 105;
-					tile.height = 105;
+					tile.width = tile.height =  TileUI.size;
 					tile.x = this.gap + i * (tile.width+this.gap);
 					tile.y = this.gap + j * (tile.height+this.gap);
 					this.backGroundGroup.addElement(tile);
