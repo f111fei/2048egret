@@ -60,9 +60,9 @@ module game {
 			}
 		}
 		
-		private showResultWindow(won:boolean):void{
+		private showResultWindow(win:boolean):void{
 			var resultWindow:ResultWindow = new ResultWindow();
-			resultWindow.won = won;
+			resultWindow.win = win;
 			resultWindow.percentWidth = 100;
 			resultWindow.percentHeight = 100;
 			this.mainGameUI.addElement(resultWindow);

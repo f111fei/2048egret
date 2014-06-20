@@ -50,6 +50,8 @@ class Main extends egret.DisplayObjectContainer{
         //注入自定义的皮肤解析器
         egret.Injector.mapClass("egret.ISkinAdapter",SkinAdapter);
 
+        egret.Profiler.getInstance().run();
+
         //设置加载进度界面
         this.loadingView  = new LoadingUI();
         this.stage.addChild(this.loadingView);

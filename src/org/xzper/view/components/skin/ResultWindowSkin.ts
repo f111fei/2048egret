@@ -9,6 +9,7 @@ module game {
     {
         public constructor(){
             super();
+            this.states = ["win","failed"];
         }
 
         private static _skinParts:Array<string> = ["button","resultUI"];
@@ -51,6 +52,20 @@ module game {
             this.resultUI.horizontalCenter = 0;
             this.resultUI.verticalCenter = -90;
             this.addElement(this.resultUI);
+        }
+
+        public commitCurrentState():void {
+            super.commitCurrentState();
+            if(this.currentState == "win")
+            {
+                this.resultUI.source = "source.result_sucess";
+                this.button.skinName = ContinueButtonSkin;
+            }
+            else
+            {
+                this.resultUI.source = "source.result_failed";
+                this.button.skinName = ResetButtonSkin;
+            }
         }
     }
 }

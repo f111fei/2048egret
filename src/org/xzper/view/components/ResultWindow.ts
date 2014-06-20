@@ -20,49 +20,24 @@ module game {
 		}
 		
 		public createCompleteEvent(event:egret.UIEvent):void{
-            this.updataSkin();
-
 			this.removeEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 			ApplicationFacade.getInstance().registerMediator( new ResultWindowMediator(this) );
 		}
 		
-		private _won:boolean = false;
-		/**
-		 * 设置文本
-		 */
-		public get won():boolean{
-			return this._won;
+		private _win:boolean = false;
+		public get win():boolean{
+			return this._win;
 		}
 		
-		private textChanged:boolean;
-		public set won(value:boolean){
-			if(value == this._won)
+		public set win(value:boolean){
+			if(value == this._win)
 				return;
-			this.textChanged = true;
-			this._won = value;
-			this.invalidateProperties();
-		}
-		
-		public commitProperties():void{
-			super.commitProperties();
-			if(this.textChanged)
-            {
-                this.updataSkin();
-			}
+			this._win = value;
+			this.invalidateSkinState();
 		}
 
-        private updataSkin():void
-        {
-            if(this._won)
-            {
-                this.resultUI.source = "source.result_sucess";
-                this.button.skinName = ContinueButtonSkin;
-            }
-            else
-            {
-                this.resultUI.source = "source.result_failed";
-                this.button.skinName = ResetButtonSkin;
-            }
+        public getCurrentSkinState():string {
+            return this.win?"win":"failed";
         }
 	}
 }
