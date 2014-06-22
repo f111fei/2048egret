@@ -10,22 +10,25 @@ module game {
          * 和主机组件匹配的皮肤部件
          */
         private static _skinParts:Array<string> = [
-            "backUIAsset","backGroundGroup","tileGroup","contentGroup"
+            "tileGroup","contentGroup"
         ];
 
         public get skinParts():Array<string>{
             return MainGameUISkin._skinParts;
         }
 
-        public backUIAsset:egret.UIAsset;
-
         /**
-         * 背景
+         * 游戏底背景
          */
-        public backGroundGroup:egret.Group;
+        private backUIAsset:egret.UIAsset;
 
         /**
-         * 格子
+         * 背景格子容器
+         */
+        private backGroundGroup:egret.Group;
+
+        /**
+         * 格子容器
          */
         public tileGroup:egret.Group;
 
@@ -46,6 +49,7 @@ module game {
             this.backUIAsset.height = this.backUIAsset.width;
             this.addElement(this.backUIAsset);
 
+            //使用格子布局
             var layout:egret.TileLayout = new egret.TileLayout();
             layout.columnCount = layout.rowCount = CommonData.size;
             layout.horizontalGap = layout.verticalGap = this.gap;

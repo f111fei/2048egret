@@ -38,7 +38,7 @@ module game {
             {
                 this.main.addEventListener(egret.TouchEvent.TOUCH_BEGIN , this.mouseDownHandle , this)
             }
-		}
+        }
 
         private downPoint:egret.Point;
         private movePoint:egret.Point;
@@ -95,11 +95,11 @@ module game {
             {
                 this.doMove(1);
             }
-            else if(offSetY>0 && offSetY>Math.abs(offSetX))
+            else if(offSetY>0 && offSetY>Math.abs(offSetX))  //下
             {
                 this.doMove(2);
             }
-            else if(offSetX<0 && Math.abs(offSetX)>Math.abs(offSetY))
+            else if(offSetX<0 && Math.abs(offSetX)>Math.abs(offSetY))  //左
             {
                 this.doMove(3);
             }

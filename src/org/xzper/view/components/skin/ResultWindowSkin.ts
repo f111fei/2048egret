@@ -36,11 +36,8 @@ module game {
             backUI.alpha = 0.3;
             backUI.percentHeight = backUI.percentWidth = 100;
             //使用九宫格
-            var texture:egret.Texture = RES.getRes("source.background");
-            var scale9Grid:egret.Rectangle = new egret.Rectangle(20, 20, 65, 65);
-            var scaleBitmap:egret.Bitmap = new egret.Bitmap(texture);
-            scaleBitmap.scale9Grid = scale9Grid;
-            backUI.source = scaleBitmap;
+            backUI.source = "source.background";
+            backUI.scale9Grid = new egret.Rectangle(20, 20, 65, 65);
             this.addElement(backUI);
 
             this.button = new egret.Button();

@@ -23,18 +23,18 @@ module game {
 			this.removeEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 			ApplicationFacade.getInstance().registerMediator( new ResultWindowMediator(this) );
 		}
-		
-		private _win:boolean = false;
-		public get win():boolean{
-			return this._win;
-		}
-		
-		public set win(value:boolean){
-			if(value == this._win)
-				return;
-			this._win = value;
-			this.invalidateSkinState();
-		}
+
+        private _win:boolean = false;
+        public get win():boolean{
+            return this._win;
+        }
+
+        public set win(value:boolean){
+            if(value == this._win)
+                return;
+            this._win = value;
+            this.invalidateSkinState();
+        }
 
         public getCurrentSkinState():string {
             return this.win?"win":"failed";

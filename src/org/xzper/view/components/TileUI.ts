@@ -14,34 +14,43 @@ module game {
 			this.width = this.height = TileUI.size;
             //使描点在中心
             this.anchorX = this.anchorY = 0.5;
+            this.location = {"x":0 , "y":0};
 		}
-		
-		private _tileVO:TileVO;
-		/**
-		 * 格子的数据
-		 */
-		public get tileVO():TileVO{
-			return this._tileVO;
-		}
-		
-		public set tileVO(value:TileVO){
-			if(value == this._tileVO){
-				return;
-			}
-			this._tileVO = value;
-			this.invalidateProperties();
-		}
-		
-		public commitProperties():void{
-			if(this._tileVO){
-				this.updateView();
-			}
-		}
-		
-		private updateView():void{
-            var mi:number = Math.log(this._tileVO.value)/Math.log(2);
+
+        /**
+         * 行列位置
+         */
+        public location:any;
+
+        private valueChanged:boolean;
+        private _value:number;
+        /**
+         * 格子的数字
+         */
+        public get value():number{
+            return this._value;
+        }
+
+        public set value(value:number){
+            if(value == this._value){
+                return;
+            }
+            this.valueChanged = true;
+            this._value = value;
+            this.invalidateProperties();
+        }
+
+        public commitProperties():void{
+            if(this.valueChanged){
+                this.valueChanged = false;
+                this.updateValue();
+            }
+        }
+
+        private updateValue():void{
+            var mi:number = Math.log(this._value)/Math.log(2);
             this.source = "number.number_"+mi;
-		}
+        }
 		
 		/**
 		 * 播放缩放效果 merged是否是合并方块
