@@ -54,13 +54,13 @@ module game {
          */
 		public getTileUI(x:number , y:number):TileUI{
 			for (var i:number = 0; i < this.tileGroup.numElements; i++) {
-				var tile:TileUI = <TileUI><any> (this.tileGroup.getElementAt(i));
-				if(tile.tileVO.x == x && tile.tileVO.y == y){
-					return tile;
-				}
-			}
-			return null;
-		}
+                var tile:TileUI = <TileUI><any> (this.tileGroup.getElementAt(i));
+                if(tile.tileVO.x == x && tile.tileVO.y == y){
+                    return tile;
+                }
+            }
+            return null;
+        }
 
         /**
          * 合并格子
