@@ -1,5 +1,4 @@
 
-
 /// <reference path="../../../../egret.d.ts"/>
 /// <reference path="../../ApplicationFacade.ts"/>
 /// <reference path="../../model/common/CommonData.ts"/>
@@ -10,67 +9,22 @@
 
 module game {
 
-	export class MainGameUI extends egret.Group{
+	export class MainGameUI extends egret.SkinnableContainer{
+        public backUIAsset:egret.Group;
 		public backGroundGroup:egret.Group;
-		public tileGroup:egret.Group;
+        public tileGroup:egret.Group;
 
-        private gap:number = 16;
+        public gap:number = 16;
 
         public constructor(){
 			super();
+            this.skinName = MainGameUISkin;
 			this.addEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 		}
 
-        public createChildren():void
-        {
-            super.createChildren();
-            this.backGroundGroup = new egret.Group();
-            this.addElement(this.backGroundGroup);
-
-            this.tileGroup = new egret.Group();
-            this.tileGroup.x = this.gap;
-            this.tileGroup.y = this.gap;
-            this.addElement(this.tileGroup);
-        }
-		
 		public createCompleteEvent(event:egret.UIEvent):void{
 			this.removeEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 			ApplicationFacade.getInstance().registerMediator( new MainGameMediator(this) );
-			
-			this.initBackGround(CommonData.size);
-		}
-		
-		/**
-		 * 初始化背景
-		 */
-		public initBackGround(size:number):void{
-			this.backGroundGroup.removeAllElements();
-
-            //背景图
-            var backUIAsset:egret.UIAsset = new egret.UIAsset();
-            backUIAsset.width = size*TileUI.size + (size+1)*this.gap;
-            backUIAsset.height = backUIAsset.width;
-
-            //使用九宫格
-            var texture:egret.Texture = RES.getRes("source.background");
-            var scale9Grid:egret.Rectangle = new egret.Rectangle(20, 20, 65, 65);
-            var scaleBitmap:egret.Bitmap = new egret.Bitmap(texture);
-            scaleBitmap.scale9Grid = scale9Grid;
-            backUIAsset.source = scaleBitmap;
-            this.backGroundGroup.addElement(backUIAsset);
-
-            //背景格子
-            var tile:egret.UIAsset;
-            for (var i:number = 0; i < size; i++) {
-				for (var j:number = 0; j < size; j++) {
-                    tile = new egret.UIAsset();
-                    tile.source = "source.backtile";
-					tile.width = tile.height =  TileUI.size;
-					tile.x = this.gap + i * (tile.width+this.gap);
-					tile.y = this.gap + j * (tile.height+this.gap);
-					this.backGroundGroup.addElement(tile);
-				}
-			}
 		}
 		
 		/**
