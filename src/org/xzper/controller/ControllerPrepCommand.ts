@@ -11,7 +11,7 @@ module game {
 			super();
 		}
 		public execute(notification:puremvc.INotification):void{
-			(new GameCommand()).register();
-		}
+            (new GameCommand()).register();
+        }
 	}
 }

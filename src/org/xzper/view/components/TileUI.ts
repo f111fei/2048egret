@@ -39,7 +39,7 @@ module game {
 		}
 		
 		private updateView():void{
-            var mi:number = <number><any> (Math.log(this._tileVO.value)/Math.log(2));
+            var mi:number = Math.log(this._tileVO.value)/Math.log(2);
             this.source = "number.number_"+mi;
 		}
 		

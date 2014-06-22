@@ -32,9 +32,9 @@ module game {
 		 * 注册消息
 		 */
 		public register():void{
-			this.facade.registerCommand(GameCommand.GAME_RESET , GameCommand);
-			this.facade.registerCommand(GameCommand.USER_MOVED , GameCommand);
-			this.facade.registerCommand(GameCommand.USER_MOVE , GameCommand);
+			this.facade.registerCommand(GameCommand.GAME_RESET , GameCommand); //注册游戏重置消息
+			this.facade.registerCommand(GameCommand.USER_MOVED , GameCommand); //注册移动后消息
+			this.facade.registerCommand(GameCommand.USER_MOVE , GameCommand);  //注册将要移动的消息
 		}
 		
 		public execute(notification:puremvc.INotification):void{
