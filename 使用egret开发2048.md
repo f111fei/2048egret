@@ -1,4 +1,4 @@
-2048是最近很火的一个小游戏，<a href="http://gabrielecirulli.github.io/2048/" target="_blank">原版</a>就是用javascript写的。恰巧最近egret出PublicBeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。egret使用typescript作为开发语言，最终编译为javascript，正好和原始版本PK一下。
+2048是最近很火的一个小游戏，<a href="http://gabrielecirulli.github.io/2048/" target="_blank">原版</a>就是用javascript写的。恰巧最近egret出publicbeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。egret使用typescript作为开发语言，最终编译为javascript，正好和原始版本PK一下。
 
 
 游戏预览：<a href="http://xzperproject.qiniudn.com/2048egret/launcher/release.html" target="_blank">点我体验</a>
