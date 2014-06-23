@@ -13,45 +13,26 @@ module game {
             this.states = ["up","down","disabled"];
         }
 
-        private upSkin:egret.UIAsset;
-        private downSkin:egret.UIAsset;
-        private disabledSkin:egret.UIAsset;
+        private uiAsset:egret.UIAsset;
 
         public createChildren():void{
             super.createChildren();
-            this.upSkin = new egret.UIAsset();
-            this.upSkin.percentHeight = this.upSkin.percentWidth = 100;
-            this.upSkin.source = "source.continueButton_up";
-            this.addElement(this.upSkin);
-
-            this.downSkin = new egret.UIAsset();
-            this.downSkin.percentHeight = this.downSkin.percentWidth = 100;
-            this.downSkin.source = "source.continueButton_over";
-            this.addElement(this.downSkin);
-
-            this.disabledSkin = new egret.UIAsset();
-            this.disabledSkin.percentHeight = this.disabledSkin.percentWidth = 100;
-            this.disabledSkin.source = "source.continueButton_over";
-            this.addElement(this.disabledSkin);
+            this.uiAsset = new egret.UIAsset();
+            this.uiAsset.percentHeight = this.uiAsset.percentWidth = 100;
+            this.addElement(this.uiAsset);
         }
 
         public commitCurrentState():void{
             super.commitCurrentState();
             switch (this.currentState){
                 case "up":
-                    this.upSkin.visible = true;
-                    this.disabledSkin.visible = false;
-                    this.downSkin.visible = false;
+                    this.uiAsset.source = "source.continueButton_up";
                     break;
                 case "down":
-                    this.downSkin.visible = true;
-                    this.disabledSkin.visible = false;
-                    this.upSkin.visible = false;
+                    this.uiAsset.source = "source.continueButton_over";
                     break;
                 case "disabled":
-                    this.disabledSkin.visible = true;
-                    this.downSkin.visible = false;
-                    this.upSkin.visible = false;
+                    this.uiAsset.source = "source.continueButton_over";
                     break;
             }
         }

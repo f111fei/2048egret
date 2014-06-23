@@ -18,7 +18,7 @@ module game {
 		
 		public startButtonClick(event:egret.TouchEvent):void{
 			this.sendNotification(GameCommand.GAME_RESET);
-		}		
+		}
 		
 		public listNotificationInterests():Array<any>{
 			return [GameProxy.UPDATE_SCORE , GameProxy.RESET_SCORE];
