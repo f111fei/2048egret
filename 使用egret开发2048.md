@@ -1,10 +1,9 @@
-2048是最近很火的一个小游戏，<a href="http://gabrielecirulli.github.io/2048/" target="_blank">原版</a>就是用javascript写的。恰巧最近egret出publicbeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。egret使用typescript作为开发语言，最终编译为javascript，正好和原始版本PK一下。
-
+2048是最近很火的一个小游戏，<a href="http://gabrielecirulli.github.io/2048/" target="_blank">原版</a>就是用JavaScript写的。恰巧最近egret PublicBeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。egret使用TypeScript作为开发语言，最终编译为JavaScript，正好和原始版本PK一下。
 
 游戏预览：<a href="http://xzperproject.qiniudn.com/2048egret/launcher/release.html" target="_blank">点我体验</a>
 
 <strong>1.准备开始</strong>
-在开始之前，我们需要学习一下typescript，和阅读官方的教程从egret开发环境的部署到创建，编译，发布项目，以及egret相关工具。在安装好开发环境后，在工作空间目录下使用命令行，创建2048egret新项目
+在开始之前，我们需要学习一下TypeScript和阅读官方的教程从egret开发环境的部署到创建，编译，发布项目，以及egret相关工具。在安装好开发环境后，在工作空间目录下使用命令行，创建2048egret新项目
 <pre class="lang:as decode:true">egret create 2048egret</pre>
 <strong>2.准备素材</strong>
 
@@ -39,7 +38,7 @@
     }</pre>
 <strong>③资源使用</strong>
 
-在项目中我们可以使用RES来使用资源，参照对应的API。对与没有写进配置文件的资源使用RES.getResByUrl方法来异步获取，。开发人员能使用极其少量的代码来完成各类资源的加载。
+在项目中我们可以使用RES来使用资源，参照对应的API。对于没有写进配置文件的资源使用RES.getResByUrl方法来异步获取。开发人员能使用极其少量的代码来完成各类资源的加载。
 
 <strong>3.更改模板生成的代码</strong>
 
@@ -50,7 +49,7 @@
     var document_class = "Main";</pre>
 默认生成的html的背景是黑色的，这里全部改成白色。将index.html里面的背景替换成#ffffff。
 
-默认尺寸是480x800的尺寸。由于我们使用的部分图片宽度大于500，以及部分PC的分辨率太小为了不出现垂直滚动条影响体验。将尺寸换成520x650。
+默认尺寸是480x800的尺寸。由于我们使用的部分图片宽度大于500，以及部分PC的分辨率太小为了不出现垂直滚动条影响体验，将尺寸换成520x650。这个不影响移动设备上的尺寸，移动设备默认是自适应宽度的。
 
 index.html中
 <pre class="lang:as decode:true">&lt;div style="display:inline-block;width:100%; height:100%;margin: 0 auto; background: #ffffff; position:relative;"
@@ -137,7 +136,7 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
 
 一个重试按钮，既然已经说了是按钮了我们就用egret.Button好了。
 
-接下来我们要做到皮肤和组件分离。那么那几个需要参与逻辑的组件自然就成了皮肤部件了。来看看MainMenuUISkin：
+接下来我们要做到皮肤和组件分离。那几个需要参与逻辑的组件自然就成了皮肤部件了。来看看MainMenuUISkin：
 <pre class="lang:as decode:true">        /**
          * 和主机组件匹配的皮肤部件
          */
@@ -237,9 +236,9 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
 <p style="text-align: center;"><img class="aligncenter size-full wp-image-156" alt="游戏演示" src="http://xzper.qiniudn.com/wp-content/uploads/2014/06/游戏演示.png" width="452" height="152" /></p>
 再次来观察这个游戏的主界面。有一张纯色的背景图，还有4x4个空白的格子，随着游戏的进行会多出带数字的格子，游戏结束了还会出现胜利的界面。
 
-先来看看第一张图。也行你认为这个这个背景一张4x4的图片不就搞定了么。不过我们这个2048单元格的数量可是可以任意调整的，可以是5x5，或者6x6甚至更多，这样才具备灵活性。你只需要改变CommandData的size属性就可以了(PS:游戏胜利的条件默认是达成2048，也可以通过修改CommandData的winValue属性来修改条件比如8192时胜利或者像上面那样32的时候胜利，想不输都难)。
+先来看看第一张图。也许你认为这个背景一张4x4的图片不就搞定了么。不过我们这个2048单元格的数量可是可以任意调整的，可以是5x5，或者6x6甚至更多，这样才具备灵活性。你只需要改变CommandData的size属性就可以了(PS:游戏胜利的条件默认是达成2048，也可以通过修改CommandData的winValue属性来修改条件比如8192时胜利或者像上面那样32的时候胜利，想不输都难)。
 
-我们继承SkinnableContainer建立一个MainGameUI的类作为容器来显示上面的界面，当然同时还需要一个皮肤MainGameUISkin。先来确定SkinParts，如下：
+我们继承SkinnableContainer建立一个MainGameUI的类作为容器来显示上面的界面，当然同时还需要一个皮肤MainGameUISkin。先来确定skinParts，如下：
 <pre class="lang:as decode:true">        /**
          * 和主机组件匹配的皮肤部件
          */
@@ -270,7 +269,7 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
          * 内容
          */
         public contentGroup:egret.Group;</pre>
-游戏游戏的底背景backUIAsset和背景格子容器backGroundGroup由于逻辑组件MainGameUI不需要关心所有这里不将其设置为SkinParts。tileGroup是放置单元格的容器，contentGroup是SkinnableContainer的皮肤部件，SkinnableContainer的addElement方法实际上是添加到这个里面，换言之如果皮肤缺少这个contentGroup那么调用MainGameUI的addElement是看不到你要添加的子项的。 然后override这个createChildren方法将这些组件加入到显示列表。
+游戏游戏的底背景backUIAsset和背景格子容器backGroundGroup由于逻辑组件MainGameUI不需要关心所有这里不将其设置为skinParts。tileGroup是放置单元格的容器，contentGroup是SkinnableContainer的皮肤部件，SkinnableContainer的addElement方法实际上是添加到这个里面，换言之如果皮肤缺少这个contentGroup那么调用MainGameUI的addElement是看不到你要添加的子项的。 然后override这个createChildren方法将这些组件加入到显示列表。
 <pre class="lang:as decode:true">        public createChildren():void
         {
             super.createChildren;
@@ -370,7 +369,7 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
 
 <strong></strong><strong>④制作胜负界面--------自定义组件状态</strong>
 
-游戏结束之后回出现胜负的界面。但是胜负界面应该是两套不同的素材，那么我们是不是可以制作两个皮肤来根据胜负来切换？这样当然可以。但是，还有一种更简单的办法就是使用自定义状态，只需要一个皮肤类就可以完成两种视图的切换。
+游戏结束之后会出现胜负的界面。但是胜负界面应该是两套不同的素材，那么我们是不是可以制作两个皮肤来根据胜负来切换？这样当然可以。但是，还有一种更简单的办法就是使用自定义状态，只需要一个皮肤类就可以完成两种视图的切换。
 
 新建一个ResultWindow类继承自SkinnableComponent，然后新建ResultWindowSkin。在ResultWindowSkin的构造函数中定义两个状态win和failed。
 <pre class="lang:as decode:true">        public constructor(){
@@ -423,7 +422,7 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
         public getCurrentSkinState():string {
             return this.win?"win":"failed";
         }</pre>
-当外界设置win的值时调用invalidateSkinState来失效皮肤状态，在框架下次渲染的时候，调用SkinnableComponent的validateSkinState方法同时通过getCurrentSkinState来获取皮肤状态，通知皮肤去改变视图。这又是失效验证机制的一次完美使用。我们只需要调用失效，然后重写对应的验证方法就行了。
+当外界设置win的值时调用invalidateSkinState来失效皮肤状态，在框架下次渲染的时候，调用SkinnableComponent的validateSkinState方法同时通过getCurrentSkinState来获取皮肤状态，通知皮肤去改变视图。这又是失效验证机制的一次完美使用。我们只需要调用失效，然后重写对应的验证方法就行了。事实上，按钮的up，down，disable之类的状态也是这样实现的。
 
 egret的GUI库，集合了Flex和<a href="http://flexlite.org" target="_blank">FlexLite</a>的核心思想。实现了自动布局，皮肤分离，组件的三层失效验证机制。快来膜拜作者<a href="http://blog.domlib.com/" target="_blank">DOM</a>大神吧。
 
@@ -543,7 +542,7 @@ egret的GUI库，集合了Flex和<a href="http://flexlite.org" target="_blank">F
 
 <strong>7.性能</strong>
 
-egret的工作流还是很高效的，工具也不少，API设计集各家所长。最后发布游戏在PC上运行是满帧运行，比原版甚至更快。在手机上运行也不错，体验超过了某些原生语音开发的2048。
+egret的工作流还是很高效的，工具也不少，架构设计集各家所长。最后发布游戏在PC上运行是满帧运行，比原版甚至更快。在手机上运行也不错，体验超过了某些原生语言开发的2048。
 
 最后交出源代码：<a href="https://github.com/f111fei/2048egret" target="_blank">点我传送</a>
 
