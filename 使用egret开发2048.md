@@ -11,7 +11,7 @@
 
 <strong>①资源打包</strong>。
 
-这里我们用到的资源主要有按钮，背景，文字以及数字这些图片。我们选择把这些图片都打包在一起合成一张大图就像<a href="http://xzperproject.qiniudn.com/2048egret/resources/assets/source.png" target="_blank">这样</a>和<a href="http://xzperproject.qiniudn.com/2048egret/resources/assets/number.png" target="_blank">这样</a>。这样做可以减少URL请求数，还能减少资源的体积，把一些具有相同特征的图片放在一起便于管理。在egret里面这种类型的资源就是sheet。只有图片是不够的，还需要一个json描述文件来说明这张图每一张小图片的位置和大小。目前已经有成熟的工具来生成sheet和json。这里我用到的是<a href="http://www.renderhjs.net/shoebox/" target="_blank">ShoeBox</a>配合这个<a href="https://github.com/runinspring/egretTools" target="_blank">插件</a>来生成egret能识别的json。安装好插件后， 将每一张图片命名，然后将这些图片选中拖入Sprites Sheet中然后配置好生成的文件名点击save就能得到一张大图和一个json了，将图片和json放入"resources/assets/"文件夹下以备使用。此外ShoeBox还能读取swf将MovieClip导出为这种大图，按每一帧自动命名，这里的number.png就是这样导出的，下面有原始素材下载地址。
+这里我们用到的资源主要有按钮，背景，文字以及数字这些图片。我们选择把这些图片都打包在一起合成一张大图就像<a href="http://xzperproject.qiniudn.com/2048egret/resource/assets/source.png" target="_blank">这样</a>和<a href="http://xzperproject.qiniudn.com/2048egret/resource/assets/number.png" target="_blank">这样</a>。这样做可以减少URL请求数，还能减少资源的体积，把一些具有相同特征的图片放在一起便于管理。在egret里面这种类型的资源就是sheet。只有图片是不够的，还需要一个json描述文件来说明这张图每一张小图片的位置和大小。目前已经有成熟的工具来生成sheet和json。这里我用到的是<a href="http://www.renderhjs.net/shoebox/" target="_blank">ShoeBox</a>配合这个<a href="https://github.com/runinspring/egretTools" target="_blank">插件</a>来生成egret能识别的json。安装好插件后， 将每一张图片命名，然后将这些图片选中拖入Sprites Sheet中然后配置好生成的文件名点击save就能得到一张大图和一个json了，将图片和json放入"resource/assets/"文件夹下以备使用。此外ShoeBox还能读取swf将MovieClip导出为这种大图，按每一帧自动命名，这里的number.png就是这样导出的，下面有原始素材下载地址。
 
 <strong> ②资源加载</strong>
 
@@ -24,7 +24,7 @@
         ........
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE,this.onConfigComplete,this);
-        RES.loadConfig("resources/resource.json","resources/");
+        RES.loadConfig("resource/resource.json","resource/");
     }
 
     /**
