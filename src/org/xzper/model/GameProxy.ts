@@ -1,8 +1,5 @@
 
 
-/// <reference path="../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="common/CommonData.ts"/>
-
 module game {
 
 	export class GameProxy extends puremvc.Proxy implements puremvc.IProxy{

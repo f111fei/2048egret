@@ -1,12 +1,4 @@
 
-
-/// <reference path="../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="../model/GameProxy.ts"/>
-/// <reference path="../model/GridProxy.ts"/>
-/// <reference path="../model/vos/TileVO.ts"/>
-/// <reference path="components/MainGameUI.ts"/>
-/// <reference path="components/ResultWindow.ts"/>
-
 module game {
 
 	export class MainGameMediator extends puremvc.Mediator implements puremvc.IMediator{

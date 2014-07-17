@@ -1,12 +1,4 @@
 
-
-/// <reference path="../../../egret.d.ts"/>
-/// <reference path="../ApplicationFacade.ts"/>
-/// <reference path="../controller/commands/GameCommand.ts"/>
-/// <reference path="../view/ApplicationMediator.ts"/>
-/// <reference path="../view/components/MainGameUI.ts"/>
-/// <reference path="../view/components/MainMenuUI.ts"/>
-
 module game {
 
 	export class AppContainer extends egret.UIStage{

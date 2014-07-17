@@ -1,8 +1,5 @@
 
 
-/// <reference path="../../../../egret.d.ts"/>
-/// <reference path="../../model/vos/TileVO.ts"/>
-
 module game {
 
 	export class TileUI extends egret.UIAsset{

@@ -1,9 +1,5 @@
 
 
-/// <reference path="../../egret.d.ts"/>
-/// <reference path="../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="controller/StartupCommand.ts"/>
-
 module game {
 
 	export class ApplicationFacade extends puremvc.Facade implements puremvc.IFacade{

@@ -32,8 +32,6 @@
  * @implements egret.ISkinAdapter
  */
 
-/// <reference path="egret.d.ts"/>
-
 class SkinAdapter implements egret.ISkinAdapter {
     /**
      * 构造函数

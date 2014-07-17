@@ -4,8 +4,6 @@
 
 module game
 
-/// <reference path="../../../../../egret.d.ts"/>
-
 {
     export class ResetButtonSkin extends egret.Skin{
 

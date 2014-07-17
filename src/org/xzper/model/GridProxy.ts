@@ -1,10 +1,5 @@
 
 
-/// <reference path="../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="../controller/commands/GameCommand.ts"/>
-/// <reference path="common/CommonData.ts"/>
-/// <reference path="vos/TileVO.ts"/>
-
 module game {
 
 	export class GridProxy extends puremvc.Proxy implements puremvc.IProxy{

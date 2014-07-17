@@ -1,12 +1,4 @@
 
-/// <reference path="../../../../egret.d.ts"/>
-/// <reference path="../../ApplicationFacade.ts"/>
-/// <reference path="../../model/common/CommonData.ts"/>
-/// <reference path="../../model/vos/TileVO.ts"/>
-/// <reference path="../../utils/ObjectPool.ts"/>
-/// <reference path="../MainGameMediator.ts"/>
-/// <reference path="TileUI.ts"/>
-
 module game {
 
 	export class MainGameUI extends egret.SkinnableContainer{

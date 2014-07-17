@@ -1,10 +1,5 @@
 
 
-/// <reference path="../../../../egret.d.ts"/>
-/// <reference path="../../ApplicationFacade.ts"/>
-/// <reference path="../MainMenuMediator.ts"/>
-/// <reference path="skin/MainMenuUISkin.ts"/>
-
 module game {
 
     export class MainMenuUI extends egret.SkinnableComponent{

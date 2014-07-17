@@ -1,9 +1,4 @@
 
-
-/// <reference path="../../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="../../model/GameProxy.ts"/>
-/// <reference path="../../model/GridProxy.ts"/>
-
 module game {
 
 	export class GameCommand extends puremvc.SimpleCommand implements puremvc.ICommand{

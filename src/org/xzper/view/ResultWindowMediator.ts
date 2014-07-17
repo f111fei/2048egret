@@ -1,10 +1,5 @@
 
 
-/// <reference path="../../../egret.d.ts"/>
-/// <reference path="../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="../controller/commands/GameCommand.ts"/>
-/// <reference path="components/ResultWindow.ts"/>
-
 module game {
 
 	export class ResultWindowMediator extends puremvc.Mediator implements puremvc.IMediator{

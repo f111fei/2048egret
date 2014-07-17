@@ -1,8 +1,5 @@
 
 
-/// <reference path="../../../../../egret.d.ts"/>
-/// <reference path="ResetButtonSkin.ts"/>
-
 module game {
 
 	export class MainMenuUISkin extends egret.Skin{

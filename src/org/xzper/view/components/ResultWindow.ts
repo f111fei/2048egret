@@ -1,12 +1,4 @@
 
-
-/// <reference path="../../../../egret.d.ts"/>
-/// <reference path="../../ApplicationFacade.ts"/>
-/// <reference path="../ResultWindowMediator.ts"/>
-/// <reference path="skin/ContinueButtonSkin.ts"/>
-/// <reference path="skin/ResetButtonSkin.ts"/>
-/// <reference path="skin/ResultWindowSkin.ts"/>
-
 module game {
 
 	export class ResultWindow extends egret.SkinnableComponent{

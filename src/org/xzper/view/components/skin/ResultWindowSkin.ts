@@ -2,8 +2,6 @@
  * Created by xzp on 2014/6/17.
  */
 
-/// <reference path="../../../../../egret.d.ts"/>
-
 module game {
     export class ResultWindowSkin extends egret.Skin
     {

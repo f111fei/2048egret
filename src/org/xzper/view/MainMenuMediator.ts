@@ -1,11 +1,5 @@
 
 
-/// <reference path="../../../egret.d.ts"/>
-/// <reference path="../../../lib/puremvc-typescript-standard-1.0.d.ts"/>
-/// <reference path="../controller/commands/GameCommand.ts"/>
-/// <reference path="../model/GameProxy.ts"/>
-/// <reference path="components/MainMenuUI.ts"/>
-
 module game {
 
 	export class MainMenuMediator extends puremvc.Mediator implements puremvc.IMediator{
