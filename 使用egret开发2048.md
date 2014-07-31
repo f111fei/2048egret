@@ -546,4 +546,4 @@ egret的工作流还是很高效的，工具也不少，架构设计集各家所
 
 最后交出源代码：<a href="https://github.com/f111fei/2048egret" target="_blank">点我传送</a>
 
-原始素材点我下载：<a href="http://xzper.qiniudn.com/wp-content/uploads/2014/06/2048素材.rar">2048素材</a>
+原始素材点我下载：<a href="http://xzper.qiniudn.com/wp-content/uploads/2014/06/2048素材.zip">2048素材</a>
