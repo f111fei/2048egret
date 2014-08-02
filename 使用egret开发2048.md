@@ -348,19 +348,19 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
 这里使用了invalidateProperties和commitProperties来完成属性的失效验证。当设置value的时候调用invalidateProperties，失效属性，GUI框架在下一次渲染的时候会调用commitProperties来完成属性的提交。失效验证简单说就是一种延迟应用改变的措施，这种失效验证在egret的GUI组件内部随处可见。这种自定义属性的例子只是其中之一，当组件的commitProperties方法被调用时组件已经准备完毕，所有的皮肤部件也匹配上了。这样也不用担心应用属性的时候报空的情况。这里通过设置TileUI的source属性来改变数字。还记得一开始的resource.json加载的number.json么。
 <pre class="lang:as decode:true">{
 "frames": {
-	"number_1": {"x":107, "y":214, "w":106, "h":106, "offX":262,"offY":159},
-	"number_10": {"x":0, "y":321, "w":106, "h":106, "offX":262,"offY":159},
-	"number_11": {"x":0, "y":214, "w":106, "h":106, "offX":262,"offY":159},
-	"number_12": {"x":0, "y":107, "w":106, "h":106, "offX":262,"offY":159},
-	"number_13": {"x":0, "y":0, "w":106, "h":106, "offX":262,"offY":159},
-	"number_2": {"x":214, "y":321, "w":106, "h":106, "offX":262,"offY":159},
-	"number_3": {"x":214, "y":214, "w":106, "h":106, "offX":262,"offY":159},
-	"number_4": {"x":214, "y":107, "w":106, "h":106, "offX":262,"offY":159},
-	"number_5": {"x":214, "y":0, "w":106, "h":106, "offX":262,"offY":159},
-	"number_6": {"x":107, "y":321, "w":106, "h":106, "offX":262,"offY":159},
-	"number_7": {"x":321, "y":0, "w":106, "h":106, "offX":262,"offY":159},
-	"number_8": {"x":107, "y":107, "w":106, "h":106, "offX":262,"offY":159},
-	"number_9": {"x":107, "y":0, "w":106, "h":106, "offX":262,"offY":159}
+	"number_1": {"x":106, "y":212, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_10": {"x":0, "y":318, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_11": {"x":0, "y":212, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_12": {"x":0, "y":106, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_13": {"x":0, "y":0, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_2": {"x":212, "y":318, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_3": {"x":212, "y":212, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_4": {"x":212, "y":106, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_5": {"x":212, "y":0, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_6": {"x":106, "y":318, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_7": {"x":318, "y":0, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_8": {"x":106, "y":106, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105},
+	"number_9": {"x":106, "y":0, "w":105, "h":105, "offX":0,"offY":0,"sourceW":105,"sourceH":105}
 
 },
 "file": "number.png"
