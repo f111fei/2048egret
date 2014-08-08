@@ -23,7 +23,7 @@ module game {
 		public handleNotification(notification:puremvc.INotification):void{
 			switch(notification.getName()){
 				case GameCommand.GAME_RESET:{
-					(<egret.IVisualElementContainer><any> (this.resultWindow.parent)).removeElement(this.resultWindow);
+					(<egret.gui.IVisualElementContainer><any> (this.resultWindow.parent)).removeElement(this.resultWindow);
 					this.facade.removeMediator(ResultWindowMediator.NAME);
 					break;
 				}

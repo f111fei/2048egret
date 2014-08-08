@@ -1,18 +1,18 @@
 
 module game {
 
-	export class ResultWindow extends egret.SkinnableComponent{
-		public resultUI:egret.UIAsset;
-		public button:egret.Button;
+	export class ResultWindow extends egret.gui.SkinnableComponent{
+		public resultUI:egret.gui.UIAsset;
+		public button:egret.gui.Button;
 		
 		public constructor(){
 			super();
             this.skinName = ResultWindowSkin;
-			this.addEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+			this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 		}
 		
-		public createCompleteEvent(event:egret.UIEvent):void{
-			this.removeEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+		public createCompleteEvent(event:egret.gui.UIEvent):void{
+			this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 			ApplicationFacade.getInstance().registerMediator( new ResultWindowMediator(this) );
 		}
 

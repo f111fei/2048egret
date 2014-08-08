@@ -1,9 +1,30 @@
-2048是最近很火的一个小游戏，<a href="http://gabrielecirulli.github.io/2048/" target="_blank">原版</a>就是用JavaScript写的。恰巧最近egret PublicBeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。egret使用TypeScript作为开发语言，最终编译为JavaScript，正好和原始版本PK一下。
+#### 写在前面
+
+本游戏使用Egret的GUI进行开发，不涉及Egret基础部分内容。本实例强烈建议结合GUIExample和深入浅出EGRET GUI系列教程来学习。
+
+要了解Egret基础部分的内容请参考下面：
+
+* [ 官方引导 ](https://github.com/egret-labs/egret-core)
+* [ NeoGuo的教程 ](https://github.com/NeoGuo/html5-documents/tree/master/egret)
+
+
+Egret GUI 相关教程：
+
+* [ 官方DEMO ](https://github.com/egret-labs/egret-examples/tree/master/GUIExample)
+* [ 深入浅出EGRET GUI (一):皮肤分离机制 ](http://bbs.egret-labs.org/thread-43-1-1.html)
+* [ 深入浅出EGRET GUI (二):失效验证机制 ](http://bbs.egret-labs.org/thread-73-1-1.html)
+* [ 深入浅出EGRET GUI (三):AFL自适应流式布局 ](http://bbs.egret-labs.org/thread-102-1-1.html)
+
+--------------------
+
+
+
+2048是最近很火的一个小游戏，<a href="http://gabrielecirulli.github.io/2048/" target="_blank">原版</a>就是用JavaScript写的。恰巧最近Egret PublicBeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。Egret使用TypeScript作为开发语言，最终编译为JavaScript，正好和原始版本PK一下。
 
 游戏预览：<a href="http://xzperproject.qiniudn.com/2048egret/launcher/release.html" target="_blank">点我体验</a>
 
 <strong>1.准备开始</strong>
-在开始之前，我们需要学习一下TypeScript和阅读官方的教程从egret开发环境的部署到创建，编译，发布项目，以及egret相关工具。在安装好开发环境后，在工作空间目录下使用命令行，创建2048egret新项目
+在开始之前，我们需要学习一下TypeScript和阅读官方的教程从Egret开发环境的部署到创建，编译，发布项目，以及Egret相关工具。在安装好开发环境后，在工作空间目录下使用命令行，创建2048egret新项目
 <pre class="lang:as decode:true">egret create 2048egret</pre>
 <strong>2.准备素材</strong>
 
@@ -44,9 +65,17 @@
 
 <strong>①修改细节</strong>
 
-默认的文档类是GameApp。我觉得还是叫Main比较亲切，修改类名称，然后修改egret_loader.js
-<pre class="lang:as decode:true">    //在此定义文档类的完整类名，若包含命名空间，需要填写命名空间前缀。
-    var document_class = "Main";</pre>
+默认的文档类是GameApp。我觉得还是叫Main比较亲切，修改类名称，然后修改项目目录下的egretProperties.json文件，将document_class的值改为Main
+<pre class="lang:as decode:true">
+{
+    "document_class" : "Main",
+    "native": {
+        "path_ignore": [
+            "libs"
+        ]
+    }
+}
+</pre>
 默认生成的html的背景是黑色的，这里全部改成白色。将index.html里面的背景替换成#ffffff。
 
 默认尺寸是480x800的尺寸。由于我们使用的部分图片宽度大于500，以及部分PC的分辨率太小为了不出现垂直滚动条影响体验，将尺寸换成520x650。这个不影响移动设备上的尺寸，移动设备默认是自适应宽度的。
@@ -57,18 +86,22 @@ index.html中
     &lt;canvas id="gameCanvas" width="520" height="650" style="background-color: #ffffff"&gt;&lt;/canvas&gt;
 &lt;/div&gt;</pre>
 egret_loader.js中
-<pre class="lang:as decode:true">    //设置屏幕适配策略
+<pre class="lang:as decode:true">
+    //设置屏幕适配策略
     var container = new egret.EqualToFrame();
-    var content = egret.Browser.getInstance().isMobile ? new egret.FixedWidth() : new egret.FixedSize(520, 650);
+    var content = egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? new egret.FixedWidth() : new egret.NoScale();
     var policy = new egret.ResolutionPolicy(container, content);
-    egret.StageDelegate.getInstance().setDesignSize(520, 650, policy);</pre>
+    egret.StageDelegate.getInstance().setDesignSize(520, 650, policy);
+</pre>
 <strong>③引入第三方库pureMVC</strong>
 
 这次我们要使用到一个mvc开发框架-pureMVC，熟悉as3的朋友一定也对这个框架不陌生吧。不熟悉的也没关系，这个框架不是这次的主角。我们从<a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" target="_blank">这里</a>下载pureMVC的TypeScript版本。得到puremvc-typescript-standard-1.0.d.ts 和 puremvc-typescript-standard-1.0.js这两个文件，其实.d.ts就类似于c++里面的.h头文件，只有空方法和空属性，真正的实现是在js文件或者ts文件里面。 将.d.ts文件放入到"libs"目录下,js文件放入launcher目录下。然后修改index.html引入这个js文件 以便在加载游戏代码之前先加载到库文件。release.html也一样引入这个js文件。
-<pre class="lang:as decode:true">&lt;script src="bin-debug/lib/egret_file_list.js"&gt;&lt;/script&gt;
+<pre class="lang:as decode:true">
+&lt;script src="bin-debug/lib/egret_file_list.js"&gt;&lt;/script&gt;
 &lt;script src="launcher/egret_loader.js"&gt;&lt;/script&gt;
 &lt;script src="launcher/puremvc-typescript-standard-1.0.js"&gt;&lt;/script&gt;
-&lt;script src="bin-debug/src/game_file_list.js"&gt;&lt;/script&gt;</pre>
+&lt;script src="bin-debug/src/game_file_list.js"&gt;&lt;/script&gt;
+</pre>
 由于现在官方对第三方库的编译支持还没设计好方案。目前我临时采用这种方式来实现。大家有更好的办法欢迎回帖讨论。
 
 <strong>④注入AssetAdapter和SkinAdapter</strong>
@@ -76,9 +109,9 @@ egret_loader.js中
 我们这次的主角是egret的GUI。找到官方<a href="https://github.com/egret-labs/egret-examples" target="_blank">GUIExample</a>中的这两个ts文件复制到项目的src文件夹下面，由于这个项目没有用到默认皮肤，删除ShinAdapter里面getDefaultSkin方法的默认皮肤。最后不要忘了一点，在引擎初始化的时候注入这两个Adapter。
 <pre class="lang:as decode:true">private onAddToStage(event:egret.Event){
         //注入自定义的素材解析器
-        egret.Injector.mapClass("egret.IAssetAdapter",AssetAdapter);
+        egret.Injector.mapClass("egret.gui.IAssetAdapter",AssetAdapter);
         //注入自定义的皮肤解析器
-        egret.Injector.mapClass("egret.ISkinAdapter",SkinAdapter);
+        egret.Injector.mapClass("egret.gui.ISkinAdapter",SkinAdapter);
         ......
         ......
 }</pre>
@@ -130,11 +163,11 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
 
 先来看看菜单长什么样子
 <p style="text-align: center;"><img class="size-full wp-image-144 aligncenter" alt="菜单" src="http://xzper.qiniudn.com/wp-content/uploads/2014/06/菜单.jpg" width="507" height="126" /></p>
-我们会发现这个菜单。有些是静态文本，是一直不变的，我偷懒直接用了一张图片代替了，图片可以用egret.UIAsset。
+我们会发现这个菜单。有些是静态文本，是一直不变的，我偷懒直接用了一张图片代替了，图片可以用egret.gui.UIAsset。
 
-还有当前得分和最高分已经那个向上飘的数字是动态的，可以选用egret.Label这个组件。
+还有当前得分和最高分已经那个向上飘的数字是动态的，可以选用egret.gui.Label这个组件。
 
-一个重试按钮，既然已经说了是按钮了我们就用egret.Button好了。
+一个重试按钮，既然已经说了是按钮了我们就用egret.gui.Button好了。
 
 接下来我们要做到皮肤和组件分离。那几个需要参与逻辑的组件自然就成了皮肤部件了。来看看MainMenuUISkin：
 <pre class="lang:as decode:true">        /**
@@ -149,61 +182,61 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
         /**
          * 加分文本
          */
-        public addLabel:egret.Label;
+        public addLabel:egret.gui.Label;
 
         /**
          * 总分文本
          */
-        public scoreLabel:egret.Label;
+        public scoreLabel:egret.gui.Label;
 
         /**
          * 最高分文本
          */
-        public highScoreLabel:egret.Label;
+        public highScoreLabel:egret.gui.Label;
 
         /**
          * 重置按钮
          */
-        public resetButton:egret.Button;
+        public resetButton:egret.gui.Button;
 
         public createChildren():void
         {
             super.createChildren;
-            var uiAsset:egret.UIAsset = new egret.UIAsset();
+            var uiAsset:egret.gui.UIAsset = new egret.gui.UIAsset();
             uiAsset.source = "source.menu";
             this.addElement(uiAsset);
 
-            this.resetButton = new egret.Button();
+            this.resetButton = new egret.gui.Button();
             this.resetButton.skinName = ResetButtonSkin;
             this.resetButton.right = 10;
             this.resetButton.top = 80;
             this.resetButton.label = "重置游戏";
             this.addElement(this.resetButton);
 
-            this.highScoreLabel = new egret.Label();
+            this.highScoreLabel = new egret.gui.Label();
             ...省略若干代码
-            this.scoreLabel = new egret.Label();
+            this.scoreLabel = new egret.gui.Label();
             ...省略若干代码
-            this.addLabel = new egret.Label();
+            this.addLabel = new egret.gui.Label();
             ...省略若干代码
         }</pre>
 篇幅有限，省略了createChildren方法里面的子组件布局。<strong>skin的createChildren方法是在皮肤和主机组件匹配的时候被调用的。皮肤和主机组件匹配是在主机组件被添加到显示列表的时候完成的。所以只要主机组件hostComponent还没有添加到显示舞台，获取hostComponent的皮肤部件都是无效的。</strong>这也是为什么我将Mediator的注册放在GUI组件的createComplete后。以防Mediator访问出现空对象的情况。
 
 再来看看主机组件MainMenuUI是怎么写的。
-<pre class="lang:as decode:true">    export class MainMenuUI extends egret.SkinnableComponent{
-        public addLabel:egret.Label;
-        public scoreLabel:egret.Label;
-        public highScoreLabel:egret.Label;
-        public resetButton:egret.Button;
+<pre class="lang:as decode:true">    export class MainMenuUI extends egret.gui.SkinnableComponent{
+        public addLabel:egret.gui.Label;
+        public scoreLabel:egret.gui.Label;
+        public highScoreLabel:egret.gui.Label;
+        public resetButton:egret.gui.Button;
 
         public constructor(){
             super();
             this.skinName = MainMenuUISkin;
-            this.addEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+            this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
         }
 
-        public createCompleteEvent(event:egret.UIEvent):void{
-            this.removeEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+        public createCompleteEvent(event:egret.gui.UIEvent):void{
+            this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
             ApplicationFacade.getInstance().registerMediator( new MainMenuMediator(this) );
         }
 
@@ -219,7 +252,7 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
             this.addLabel.visible = false;
         }
 
-	/**
+    /**
 	* 加分效果
 	*/
         public playScoreEffect(addScore:number):void{
@@ -253,49 +286,49 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
         /**
          * 游戏底背景
          */
-        private backUIAsset:egret.UIAsset;
+        private backUIAsset:egret.gui.UIAsset;
 
         /**
          * 背景格子容器
          */
-        private backGroundGroup:egret.Group;
+        private backGroundGroup:egret.gui.Group;
 
         /**
          * 格子容器
          */
-        public tileGroup:egret.Group;
+        public tileGroup:egret.gui.Group;
 
         /**
          * 内容
          */
-        public contentGroup:egret.Group;</pre>
+        public contentGroup:egret.gui.Group;</pre>
 游戏游戏的底背景backUIAsset和背景格子容器backGroundGroup由于逻辑组件MainGameUI不需要关心所有这里不将其设置为skinParts。tileGroup是放置单元格的容器，contentGroup是SkinnableContainer的皮肤部件，SkinnableContainer的addElement方法实际上是添加到这个里面，换言之如果皮肤缺少这个contentGroup那么调用MainGameUI的addElement是看不到你要添加的子项的。 然后override这个createChildren方法将这些组件加入到显示列表。
 <pre class="lang:as decode:true">        public createChildren():void
         {
             super.createChildren;
-            this.backUIAsset = new egret.UIAsset();
+            this.backUIAsset = new egret.gui.UIAsset();
             this.backUIAsset.source = "source.background";
             //使用九宫格
-            this.backUIAsset.scale9Grid = new egret.Rectangle(20, 20, 65, 65);
+            this.backUIAsset.scale9Grid = new egret.gui.Rectangle(20, 20, 65, 65);
             this.backUIAsset.width = CommonData.size*(TileUI.size + this.gap) + this.gap;
             this.backUIAsset.height = this.backUIAsset.width;
             this.addElement(this.backUIAsset);
 
             //使用格子布局
-            var layout:egret.TileLayout = new egret.TileLayout();
+            var layout:egret.gui.TileLayout = new egret.gui.TileLayout();
             layout.columnCount = layout.rowCount = CommonData.size;
             layout.horizontalGap = layout.verticalGap = this.gap;
-            this.backGroundGroup = new egret.Group();
+            this.backGroundGroup = new egret.gui.Group();
             this.backGroundGroup.x = this.backGroundGroup.y = this.gap;
             this.backGroundGroup.layout = layout;
             this.addElement(this.backGroundGroup);
             this.initBackGround(CommonData.size);
 
-            this.tileGroup = new egret.Group();
+            this.tileGroup = new egret.gui.Group();
             this.tileGroup.x = this.tileGroup.y = this.gap;
             this.addElement(this.tileGroup);
 
-            this.contentGroup = new egret.Group();
+            this.contentGroup = new egret.gui.Group();
             this.contentGroup.percentHeight = this.contentGroup.percentWidth = 100;
             this.contentGroup.touchEnabled = false;
             this.addElement(this.contentGroup);
@@ -303,11 +336,11 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
 先看backUIAsset，由于图片素材只是一个小的纯色圆角矩形，使用scale9Grid属性来设置九宫格缩放，这样设置了宽高就不会变形了。这里backGroundGroup设置了一个layout来确定布局。设置好间距以及行列数，向容器里面添加子项时就自动设置了位置了，不需要设置子项的x，y属性。TileLayout会自动布局。
 <pre class="lang:as decode:true">        private initBackGround(size:number):void{
             //背景格子
-            var tile:egret.UIAsset;
+            var tile:egret.gui.UIAsset;
             var totalNum:number = size * size;
             for(var i:number = 0;i &lt; totalNum ; i++)
             {
-                tile = new egret.UIAsset();
+                tile = new egret.gui.UIAsset();
                 tile.width = tile.height = TileUI.size;
                 tile.source = "source.backtile";
                 this.backGroundGroup.addElement(tile);
@@ -386,12 +419,12 @@ command属于控制器。负责收发消息和处理简单的事务。在Startup
         /**
          * 按钮
          */
-        public button:egret.Button;
+        public button:egret.gui.Button;
 
         /**
          * 结果文本
          */
-        public resultUI:egret.UIAsset;</pre>
+        public resultUI:egret.gui.UIAsset;</pre>
 在createChildren里面将皮肤部件布局好位置。最后重写commitCurrentState方法来根据对应的状态来改变部件的skin。
 <pre class="lang:as decode:true">        public commitCurrentState():void {
             super.commitCurrentState();
@@ -456,9 +489,9 @@ egret的GUI库，集合了Flex和<a href="http://flexlite.org" target="_blank">F
 
 <strong>②针对不同设备</strong>
 
-游戏在PC我们使用键盘上的方向键操控游戏，但是在移动设备上就需要使用手势来操控了，通过egret.Browser.getInstance().isMobile这个值来获取平台 。具体实现在ApplicationMediator中：
+游戏在PC我们使用键盘上的方向键操控游戏，但是在移动设备上就需要使用手势来操控了，通过egret.MainContext.deviceType这个值来获取平台 。具体实现在ApplicationMediator中：
 <pre class="lang:as decode:true">            //为PC和移动端设置不同的移动策略
-            if(!egret.Browser.getInstance().isMobile)
+            if(egret.MainContext.deviceType != egret.MainContext.DEVICE_MOBILE)
             {
                 var self = this;
                 document.addEventListener("keydown",function(event:KeyboardEvent){

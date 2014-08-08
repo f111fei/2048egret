@@ -2,7 +2,7 @@
 
 module game {
 
-	export class MainMenuUISkin extends egret.Skin{
+	export class MainMenuUISkin extends egret.gui.Skin{
 
 		public constructor(){
 			super();
@@ -20,38 +20,38 @@ module game {
         /**
          * 加分文本
          */
-        public addLabel:egret.Label;
+        public addLabel:egret.gui.Label;
 
         /**
          * 总分文本
          */
-        public scoreLabel:egret.Label;
+        public scoreLabel:egret.gui.Label;
 
         /**
          * 最高分文本
          */
-        public highScoreLabel:egret.Label;
+        public highScoreLabel:egret.gui.Label;
 
         /**
          * 重置按钮
          */
-        public resetButton:egret.Button;
+        public resetButton:egret.gui.Button;
 
         public createChildren():void
         {
             super.createChildren;
-            var uiAsset:egret.UIAsset = new egret.UIAsset();
+            var uiAsset:egret.gui.UIAsset = new egret.gui.UIAsset();
             uiAsset.source = "source.menu";
             this.addElement(uiAsset);
 
-            this.resetButton = new egret.Button();
+            this.resetButton = new egret.gui.Button();
             this.resetButton.skinName = ResetButtonSkin;
             this.resetButton.right = 10;
-            this.resetButton.top = 80;
+            this.resetButton.top = 70;
             this.resetButton.label = "重置游戏";
             this.addElement(this.resetButton);
 
-            this.highScoreLabel = new egret.Label();
+            this.highScoreLabel = new egret.gui.Label();
             this.highScoreLabel.text = "0";
             this.highScoreLabel.horizontalCenter = 203;
             this.highScoreLabel.size = 23;
@@ -61,14 +61,14 @@ module game {
             this.highScoreLabel.top = 40;
             this.addElement(this.highScoreLabel);
 
-            var group:egret.Group = new egret.Group;
+            var group:egret.gui.Group = new egret.gui.Group;
             group.width = 96;
             group.height = 56;
             group.right = 103;
-            group.top = 15;
+            group.top = 5;
             this.addElement(group);
 
-            this.scoreLabel = new egret.Label();
+            this.scoreLabel = new egret.gui.Label();
             this.scoreLabel.text = "0";
             this.scoreLabel.horizontalCenter = 0;
             this.scoreLabel.size = 23;
@@ -79,7 +79,7 @@ module game {
             this.scoreLabel.y = 25;
             group.addElement(this.scoreLabel);
 
-            this.addLabel = new egret.Label();
+            this.addLabel = new egret.gui.Label();
             this.addLabel.horizontalCenter = 0;
             this.addLabel.size = 20;
             this.addLabel.textColor = 0x8B8177;

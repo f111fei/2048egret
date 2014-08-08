@@ -1,0 +1,8 @@
+{
+    "document_class" : "Main",
+    "native": {
+        "path_ignore": [
+            "libs"
+        ]
+    }
+}

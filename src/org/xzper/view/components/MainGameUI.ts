@@ -1,19 +1,19 @@
 
 module game {
 
-	export class MainGameUI extends egret.SkinnableContainer{
-        public tileGroup:egret.Group;
+	export class MainGameUI extends egret.gui.SkinnableContainer{
+        public tileGroup:egret.gui.Group;
 
         public gap:number = 16;
 
         public constructor(){
 			super();
             this.skinName = MainGameUISkin;
-			this.addEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+			this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 		}
 
-		public createCompleteEvent(event:egret.UIEvent):void{
-			this.removeEventListener(egret.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+		public createCompleteEvent(event:egret.gui.UIEvent):void{
+			this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 			ApplicationFacade.getInstance().registerMediator( new MainGameMediator(this) );
 		}
 

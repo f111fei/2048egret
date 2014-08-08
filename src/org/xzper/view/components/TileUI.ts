@@ -2,7 +2,7 @@
 
 module game {
 
-	export class TileUI extends egret.UIAsset{
+	export class TileUI extends egret.gui.UIAsset{
 
         public static size:number = 105;
 

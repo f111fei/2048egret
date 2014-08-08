@@ -8,7 +8,7 @@ module game {
 			super(ApplicationMediator.NAME, viewComponent);
 
             //为PC和移动端设置不同的移动策略
-            if(!egret.Browser.getInstance().isMobile)
+            if(egret.MainContext.deviceType != egret.MainContext.DEVICE_MOBILE)
             {
                 var self = this;
                 document.addEventListener("keydown",function(event:KeyboardEvent){
@@ -38,9 +38,9 @@ module game {
         private movePoint:egret.Point;
         private mouseDownHandle(event:egret.TouchEvent):void
         {
-            egret.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.stage_mouseMoveHandler,this);
-            egret.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.stage_mouseUpHandler,this);
-            egret.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,this.stage_mouseUpHandler,this);
+            egret.gui.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.stage_mouseMoveHandler,this);
+            egret.gui.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.stage_mouseUpHandler,this);
+            egret.gui.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,this.stage_mouseUpHandler,this);
 
             this.downPoint = this.main.globalToLocal(event.stageX, event.stageY);
         }
@@ -57,13 +57,13 @@ module game {
         }
 
         public stage_mouseUpHandler(event:egret.Event):void{
-            egret.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,
+            egret.gui.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,
                 this.stage_mouseMoveHandler,
                 this);
-            egret.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_END,
+            egret.gui.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_END,
                 this.stage_mouseUpHandler,
                 this);
-            egret.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,
+            egret.gui.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,
                 this.stage_mouseUpHandler,
                 this);
             if(this.needMove){

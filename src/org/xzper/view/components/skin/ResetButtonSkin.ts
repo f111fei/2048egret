@@ -5,18 +5,18 @@
 module game
 
 {
-    export class ResetButtonSkin extends egret.Skin{
+    export class ResetButtonSkin extends egret.gui.Skin{
 
         public constructor(){
             super();
             this.states = ["up","down","disabled"];
         }
 
-        private uiAsset:egret.UIAsset;
+        private uiAsset:egret.gui.UIAsset;
 
         public createChildren():void{
             super.createChildren();
-            this.uiAsset = new egret.UIAsset();
+            this.uiAsset = new egret.gui.UIAsset();
             this.uiAsset.percentHeight = this.uiAsset.percentWidth = 100;
             this.addElement(this.uiAsset);
         }

@@ -3,6 +3,12 @@ console.log = function (message) {
     egtlog(message);
 }
 
+egret_native.setSearchPaths(["",
+    "src/",
+    "resource/",
+    "resource/assets/",
+    "resource/config"
+]);
 
 egret_native.egtMain = function () {
     require("bin-debug/lib/egret_file_list.js");
@@ -18,25 +24,28 @@ egret_native.egtMain = function () {
     }
 
 
+
+    egret.MainContext.type = egret.MainContext.TYPE_NATIVE;
     var context = egret.MainContext.instance;
     context.rendererContext = new egret.NativeRendererContext();
     context.netContext = new egret.NativeNetContext();
     context.touchContext = new egret.NativeTouchContext();
     context.deviceContext = new egret.NativeDeviceContext();
 
-    egret_native.EGTView.setDesignSize(510, 650);
-    context.stage = new egret.Stage(510, 650);
+    egret_native.EGTView.setDesignSize(480, 800);
+    context.stage = new egret.Stage(480, 800);
     egret.RendererContext.CONTENT_SCALE_FACTOR = 1;
 
     context.run();
 
+    var document_class = "Main";
     var rootClass;
     if(document_class){
         rootClass = egret.getDefinitionByName(document_class);
     }
     if(rootClass) {
         var rootContainer = new rootClass();
-        if(rootContainer instanceof egret.DisplayObject){
+        if(rootContainer instanceof egret.DisplayObjectContainer){
             context.stage.addChild(rootContainer);
         }
         else{
@@ -44,6 +53,6 @@ egret_native.egtMain = function () {
         }
     }
     else{
-        throw new Error("找不到文档类！请在game_file_list.js指定文档类的完全限定名。");
+        throw new Error("找不到文档类！");
     }
 }

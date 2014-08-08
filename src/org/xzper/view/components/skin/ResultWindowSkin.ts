@@ -3,7 +3,7 @@
  */
 
 module game {
-    export class ResultWindowSkin extends egret.Skin
+    export class ResultWindowSkin extends egret.gui.Skin
     {
         public constructor(){
             super();
@@ -19,18 +19,18 @@ module game {
         /**
          * 按钮
          */
-        public button:egret.Button;
+        public button:egret.gui.Button;
 
         /**
          * 结果文本
          */
-        public resultUI:egret.UIAsset;
+        public resultUI:egret.gui.UIAsset;
 
         public createChildren():void {
             super.createChildren;
 
             //背景
-            var backUI:egret.UIAsset = new egret.UIAsset();
+            var backUI:egret.gui.UIAsset = new egret.gui.UIAsset();
             backUI.alpha = 0.3;
             backUI.percentHeight = backUI.percentWidth = 100;
             //使用九宫格
@@ -38,12 +38,12 @@ module game {
             backUI.scale9Grid = new egret.Rectangle(20, 20, 65, 65);
             this.addElement(backUI);
 
-            this.button = new egret.Button();
+            this.button = new egret.gui.Button();
             this.button.horizontalCenter = 0;
             this.button.verticalCenter = 90;
             this.addElement(this.button);
 
-            this.resultUI = new egret.UIAsset();
+            this.resultUI = new egret.gui.UIAsset();
             this.resultUI.horizontalCenter = 0;
             this.resultUI.verticalCenter = -90;
             this.addElement(this.resultUI);

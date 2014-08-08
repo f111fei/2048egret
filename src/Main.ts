@@ -39,9 +39,9 @@ class Main extends egret.DisplayObjectContainer{
 
     private onAddToStage(event:egret.Event){
         //注入自定义的素材解析器
-        egret.Injector.mapClass("egret.IAssetAdapter",AssetAdapter);
+        egret.Injector.mapClass("egret.gui.IAssetAdapter",AssetAdapter);
         //注入自定义的皮肤解析器
-        egret.Injector.mapClass("egret.ISkinAdapter",SkinAdapter);
+        egret.Injector.mapClass("egret.gui.ISkinAdapter",SkinAdapter);
 
         egret.Profiler.getInstance().run();
 
