@@ -65,7 +65,7 @@ module game {
             group.width = 96;
             group.height = 56;
             group.right = 103;
-            group.top = 5;
+            group.top = 15;
             this.addElement(group);
 
             this.scoreLabel = new egret.gui.Label();
