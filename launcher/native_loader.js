@@ -11,6 +11,7 @@ egret_native.setSearchPaths(["",
 ]);
 
 egret_native.egtMain = function () {
+    require("launcher/puremvc-typescript-standard-1.0.js");
     require("bin-debug/lib/egret_file_list.js");
     require("bin-debug/src/game_file_list.js");
     for (var key in egret_file_list) {
