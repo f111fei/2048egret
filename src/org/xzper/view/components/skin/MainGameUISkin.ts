@@ -51,7 +51,7 @@ module game {
 
             //使用格子布局
             var layout:egret.gui.TileLayout = new egret.gui.TileLayout();
-            layout.columnCount = layout.rowCount = CommonData.size;
+            layout.requestedColumnCount = layout.requestedRowCount = CommonData.size;
             layout.horizontalGap = layout.verticalGap = this.gap;
             this.backGroundGroup = new egret.gui.Group();
             this.backGroundGroup.x = this.backGroundGroup.y = this.gap;
