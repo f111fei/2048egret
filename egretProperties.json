@@ -1,8 +1,17 @@
 {
-    "document_class" : "Main",
-    "native": {
-        "path_ignore": [
-            "libs"
-        ]
-    }
+	"document_class": "Main",
+	"native": {
+		"path_ignore": [
+			"libs"
+		]
+	},
+	"modules": [
+		{
+			"name": "core"
+		},
+		{
+			"name": "gui"
+		}
+	],
+	"egret_version": "1.0.4"
 }
