@@ -88,21 +88,38 @@ index.html中
 egret_loader.js中
 <pre class="lang:as decode:true">
     //设置屏幕适配策略
-    var container = new egret.EqualToFrame();
-    var content = egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? new egret.FixedWidth() : new egret.NoScale();
-    var policy = new egret.ResolutionPolicy(container, content);
-    egret.StageDelegate.getInstance().setDesignSize(520, 650, policy);
+    egret.StageDelegate.getInstance().setDesignSize(520, 650);
+    context.stage = new egret.Stage();
+    var scaleMode =  egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? egret.StageScaleMode.SHOW_ALL : egret.StageScaleMode.NO_SCALE;
+    context.stage.scaleMode = scaleMode;
 </pre>
 <strong>③引入第三方库pureMVC</strong>
 
-这次我们要使用到一个mvc开发框架-pureMVC，熟悉as3的朋友一定也对这个框架不陌生吧。不熟悉的也没关系，这个框架不是这次的主角。我们从<a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" target="_blank">这里</a>下载pureMVC的TypeScript版本。得到puremvc-typescript-standard-1.0.d.ts 和 puremvc-typescript-standard-1.0.js这两个文件，其实.d.ts就类似于c++里面的.h头文件，只有空方法和空属性，真正的实现是在js文件或者ts文件里面。 将.d.ts文件放入到"libs"目录下,js文件放入launcher目录下。然后修改index.html引入这个js文件 以便在加载游戏代码之前先加载到库文件。release.html也一样引入这个js文件。
+这次我们要使用到一个mvc开发框架-pureMVC，熟悉as3的朋友一定也对这个框架不陌生吧。不熟悉的也没关系，这个框架不是这次的主角。我们从<a href="https://github.com/PureMVC/puremvc-typescript-standard-framework" target="_blank">这里</a>下载pureMVC的TypeScript版本。得到puremvc-typescript-standard-1.0.d.ts 和 puremvc-typescript-standard-1.0.js这两个文件，其实.d.ts就类似于c++里面的.h头文件，只有空方法和空属性，真正的实现是在js文件或者ts文件里面。在项目里面的src文件夹下建立一个puremvc的文件夹，将这个js文件和d.ts文件放进去。然后在项目根目录下建立一个puremvc.json的文件内容如下
 <pre class="lang:as decode:true">
-&lt;script src="bin-debug/lib/egret_file_list.js"&gt;&lt;/script&gt;
-&lt;script src="launcher/egret_loader.js"&gt;&lt;/script&gt;
-&lt;script src="launcher/puremvc-typescript-standard-1.0.js"&gt;&lt;/script&gt;
-&lt;script src="bin-debug/src/game_file_list.js"&gt;&lt;/script&gt;
+{
+    "name": "puremvc",
+    "source":"src/puremvc/",
+    "file_list": [
+        "puremvc-typescript-standard-1.0.js",
+        "puremvc-typescript-standard-1.0.d.ts"
+    ]
+}
 </pre>
-由于现在官方对第三方库的编译支持还没设计好方案。目前我临时采用这种方式来实现。大家有更好的办法欢迎回帖讨论。
+这样就表示配置了一个第三方模块。之后在编译器编译时会把相应的模块对应的js文件夹编译进libs文件夹下。项目里面我们还使用了gui模块，这些模块的配置是在egretProperties.json中，部分代码如下
+<pre class="lang:as decode:true">
+	"modules": [
+		{
+			"name": "core"
+		},
+		{
+			"name": "gui"
+		},
+        {
+            "name": "puremvc","path":"."
+        }
+	],
+</pre>
 
 <strong>④注入AssetAdapter和SkinAdapter</strong>
 
