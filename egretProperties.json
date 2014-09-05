@@ -11,7 +11,10 @@
 		},
 		{
 			"name": "gui"
-		}
+		},
+        {
+            "name": "puremvc","path":"."
+        }
 	],
-	"egret_version": "1.0.4"
+	"egret_version": "1.0.5"
 }

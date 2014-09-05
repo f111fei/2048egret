@@ -3,4 +3,4 @@ bin-debug/
 temp/
 egret.d.ts
 libs/egret.d.ts
-/libs/core
+/libs/

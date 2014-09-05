@@ -25,55 +25,27 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-egret_h5 = {};
-
-egret_h5.prefix = "";
-
-egret_h5.loadScript = function (list, callback) {
-    var loaded = 0;
-    var loadNext = function () {
-        egret_h5.loadSingleScript(egret_h5.prefix + list[loaded], function () {
-            loaded++;
-            if (loaded >= list.length) {
-                callback();
-            }
-            else {
-                loadNext();
-            }
-        })
-    };
-    loadNext();
-}
-
-egret_h5.loadSingleScript = function (src, callback) {
-    var s = document.createElement('script');
-    if (s.hasOwnProperty("async")) {
-        s.async = false;
-    }
-    s.src = src;
-    s.addEventListener('load', function () {
-        this.removeEventListener('load', arguments.callee, false);
-        callback();
-    }, false);
-    document.body.appendChild(s);
-}
-
 egret_h5.startGame = function () {
     var canvas = document.getElementById(egret.StageDelegate.canvas_name);
     context = egret.MainContext.instance;
-    context.rendererContext = new egret.HTML5CanvasRenderer(canvas);
     context.touchContext = new egret.HTML5TouchContext(canvas);
     context.deviceContext = new egret.HTML5DeviceContext();
     context.netContext = new egret.HTML5NetContext();
 
 
-    //设置屏幕适配策略
-    var container = new egret.EqualToFrame();
-    var content = egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? new egret.FixedWidth() : new egret.NoScale();
-    var policy = new egret.ResolutionPolicy(container, content);
-    egret.StageDelegate.getInstance().setDesignSize(520, 650, policy);
 
-    context.stage = new egret.Stage(canvas.width, canvas.height);
+    egret.StageDelegate.getInstance().setDesignSize(520, 650);
+    context.stage = new egret.Stage();
+    var scaleMode =  egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? egret.StageScaleMode.SHOW_ALL : egret.StageScaleMode.NO_SCALE;
+    context.stage.scaleMode = scaleMode;
+
+    //WebGL是egret的Beta特性，默认关闭
+    if(false){// egret.WebGLUtils.checkCanUseWebGL()) {
+        context.rendererContext = new egret.WebGLRenderer(canvas);
+    }
+    else {
+        context.rendererContext = new egret.HTML5CanvasRenderer(canvas);
+    }
 
     egret.MainContext.instance.rendererContext.texture_scale_factor = 1;
     context.run();
@@ -94,18 +66,4 @@ egret_h5.startGame = function () {
     else{
         throw new Error("找不到文档类！");
     }
-}
-
-egret_h5.preloadScript = function (list, prefix) {
-    if (!egret_h5.preloadList) {
-        egret_h5.preloadList = [];
-    }
-    egret_h5.preloadList = egret_h5.preloadList.concat(list.map(function (item) {
-        return prefix + item;
-    }))
-}
-
-egret_h5.startLoading = function () {
-    var list = egret_h5.preloadList;
-    egret_h5.loadScript(list, egret_h5.startGame);
-}
+};

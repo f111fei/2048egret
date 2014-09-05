@@ -38,7 +38,7 @@ module game {
                     tile.playScale(false);
                 }
             };
-            egret.Ticker.getInstance().setTimeout(showTile , this , 100);   //延迟显示格子，保证其他的格子移动完成后显示
+            egret.setTimeout(showTile , this , 100);   //延迟显示格子，保证其他的格子移动完成后显示
 		}
 
         /**
