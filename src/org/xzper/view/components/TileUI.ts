@@ -4,11 +4,8 @@ module game {
 
 	export class TileUI extends egret.gui.UIAsset{
 
-        public static size:number = 105;
-
 		public constructor(){
 			super();
-			this.width = this.height = TileUI.size;
             //使描点在中心
             this.anchorX = this.anchorY = 0.5;
             this.location = {"x":0 , "y":0};

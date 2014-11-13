@@ -27,10 +27,10 @@ module game {
                     this.uiAsset.source = "source.continueButton_up";
                     break;
                 case "down":
-                    this.uiAsset.source = "source.continueButton_over";
+                    this.uiAsset.source = "source.continueButton_down";
                     break;
                 case "disabled":
-                    this.uiAsset.source = "source.continueButton_over";
+                    this.uiAsset.source = "source.continueButton_down";
                     break;
             }
         }

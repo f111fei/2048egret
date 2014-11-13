@@ -11,11 +11,7 @@ module game {
         /**
          * 和主机组件匹配的皮肤部件
          */
-        private static _skinParts:Array<string> = ["addLabel","scoreLabel","highScoreLabel","resetButton"];
-
-        public get skinParts():Array<string>{
-            return MainMenuUISkin._skinParts;
-        }
+        public skinParts:Array<String> = ["addLabel","scoreLabel","highScoreLabel","resetButton"];
 
         /**
          * 加分文本
@@ -46,7 +42,7 @@ module game {
 
             this.resetButton = new egret.gui.Button();
             this.resetButton.skinName = ResetButtonSkin;
-            this.resetButton.right = 10;
+            this.resetButton.right = 2;
             this.resetButton.top = 70;
             this.resetButton.label = "重置游戏";
             this.addElement(this.resetButton);

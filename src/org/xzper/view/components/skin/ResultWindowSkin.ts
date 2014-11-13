@@ -10,11 +10,7 @@ module game {
             this.states = ["win","failed"];
         }
 
-        private static _skinParts:Array<string> = ["button","resultUI"];
-
-        public get skinParts():Array<string>{
-            return ResultWindowSkin._skinParts;
-        }
+        public skinParts:Array<String> = ["button","resultUI"];
 
         /**
          * 按钮
