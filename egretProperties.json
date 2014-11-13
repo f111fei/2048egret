@@ -12,9 +12,10 @@
 		{
 			"name": "gui"
 		},
-        {
-            "name": "puremvc","path":"."
-        }
+		{
+			"name": "puremvc",
+			"path": "."
+		}
 	],
-	"egret_version": "1.0.5"
+	"egret_version": "1.1.2"
 }
