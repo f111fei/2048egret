@@ -10,7 +10,7 @@ module game {
 
         public constructor(){
             super();
-            this.skinName = MainMenuUISkin;
+            this.skinName = org.xzper.view.components.skin.MainMenuUISkin;
             this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
         }
 

@@ -7,7 +7,7 @@ module game {
 		
 		public constructor(){
 			super();
-            this.skinName = ResultWindowSkin;
+            this.skinName = org.xzper.view.components.skin.ResultWindowSkin;
 			this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 		}
 		
