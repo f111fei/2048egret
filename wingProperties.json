@@ -96,13 +96,13 @@
 				},
 				{
 					"isFolder":false,
-					"key":"continueButton_down",
-					"name":"continueButton_down"
+					"key":"buttonDown",
+					"name":"buttonDown"
 				},
 				{
 					"isFolder":false,
-					"key":"continueButton_up",
-					"name":"continueButton_up"
+					"key":"buttonUp",
+					"name":"buttonUp"
 				},
 				{
 					"isFolder":false,
@@ -113,16 +113,6 @@
 					"isFolder":false,
 					"key":"menu",
 					"name":"menu"
-				},
-				{
-					"isFolder":false,
-					"key":"resetButton_down",
-					"name":"resetButton_down"
-				},
-				{
-					"isFolder":false,
-					"key":"resetButton_up",
-					"name":"resetButton_up"
 				},
 				{
 					"isFolder":false,

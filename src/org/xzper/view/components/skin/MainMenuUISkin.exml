@@ -1,14 +1,1 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
-	<w:HostComponent name="egret.gui.SkinnableComponent"/>
-	<w:Declarations/>
-	<e:states>
-		<e:State name="normal"/>
-		<e:State name="disabled"/>
-	</e:states>
-	<e:UIAsset source="menu" y="0" x="0"/>
-	<e:Label id="scoreLabel" size="23" textColor="16777215" y="37" horizontalCenter="102" text="0"/>
-	<e:Label id="addLabel" y="25" size="20" textColor="9142647" text="+2" horizontalCenter="101"/>
-	<e:Label id="highScoreLabel" size="23" textColor="0xFFFFFF" y="37" horizontalCenter="203" text="0"/>
-	<e:Button id="resetButton" label="按钮" x="402" y="71" skinName="org.xzper.view.components.skin.ResetButtonSkin"/>
-</e:Skin>
+<?xml version='1.0' encoding='utf-8'?><e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">	<w:HostComponent name="egret.gui.SkinnableComponent"/>	<w:Declarations/>	<e:states>		<e:State name="normal"/>		<e:State name="disabled"/>	</e:states>	<e:UIAsset source="menu" y="0" x="0"/>	<e:Label id="scoreLabel" size="23" textColor="16777215" y="37" horizontalCenter="102" text="0"/>	<e:Label id="addLabel" y="25" size="20" textColor="9142647" text="+2" horizontalCenter="101"/>	<e:Label id="highScoreLabel" size="23" textColor="0xFFFFFF" y="37" horizontalCenter="203" text="0"/>	<e:Button id="resetButton" x="402" y="71" skinName="org.xzper.view.components.skin.CustonmButtonSkin" label="重置"/></e:Skin>

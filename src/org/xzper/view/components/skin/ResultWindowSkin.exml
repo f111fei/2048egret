@@ -1,12 +1,1 @@
-<?xml version='1.0' encoding='utf-8'?>
-<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing" width="500" height="400">
-	<w:HostComponent name="egret.gui.SkinnableComponent"/>
-	<w:Declarations/>
-	<e:states>
-		<e:State name="win"/>
-		<e:State name="failed"/>
-	</e:states>
-	<e:UIAsset source="background" scale9Grid="12,12,76,76" left="0" right="0" top="0" bottom="0" alpha="0.8"/>
-	<e:UIAsset id="resultUI" source="result_sucess" horizontalCenter="0" verticalCenter="-90" source.failed="result_failed"/>
-	<e:Button id="button" label="按钮" skinName="org.xzper.view.components.skin.ContinueButtonSkin" horizontalCenter="0" verticalCenter="90" skinName.failed="org.xzper.view.components.skin.ResetButtonSkin"/>
-</e:Skin>
+<?xml version='1.0' encoding='utf-8'?><e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing" width="500" height="400">	<w:HostComponent name="egret.gui.SkinnableComponent"/>	<w:Declarations/>	<e:states>		<e:State name="win"/>		<e:State name="failed"/>	</e:states>	<e:UIAsset source="background" scale9Grid="12,12,76,76" left="0" right="0" top="0" bottom="0" alpha="0.8"/>	<e:UIAsset id="resultUI" source="result_sucess" horizontalCenter="0" verticalCenter="-90" source.failed="result_failed"/>	<e:Button id="button" horizontalCenter="0" verticalCenter="90" label="继续" skinName="org.xzper.view.components.skin.CustonmButtonSkin" label.failed="重试"/></e:Skin>

@@ -7,13 +7,13 @@
 	"resources":[
 	{
 		"name":"number",
-		"subkeys":"number_1,number_5,number_3,number_9,number_6,number_8,number_11,number_12,number_10,number_4,number_2,number_13,number_7",
+		"subkeys":"number_1,number_5,number_7,number_9,number_10,number_12,number_11,number_2,number_4,number_13,number_8,number_3,number_6",
 		"type":"sheet",
 		"url":"assets/number.json"
 	},
 	{
 		"name":"source",
-		"subkeys":"backtile,menu,resetButton_up,result_failed,resetButton_down,continueButton_down,continueButton_up,background,frontground,result_sucess",
+		"subkeys":"menu,frontground,buttonDown,result_failed,background,result_sucess,backtile,buttonUp",
 		"type":"sheet",
 		"url":"assets/source.json"
 	}]
