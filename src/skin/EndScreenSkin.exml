@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.TitleWindow"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset source="end_background"/>
+	<e:Button skinName="skin.components.CloseButtonSkin" width="50" label="按钮" height="50" id="closeButton" right="33" top="21"/>
+	<e:Label fontFamily="Arial" top="23" horizontalCenter="-5" id="titleDisplay" italic="true" textColor="0x09827E" text="Well Done!" bold="true"/>
+	<e:Group id="contentGroup" width="542" height="556" y="97" x="43">
+		<e:Label text="Total score" y="16" textColor="16745472" fontFamily="Helvetica" horizontalCenter="0.5" bold="true"/>
+		<e:Label id="totalScoreLabel" fontFamily="Helvetica" textColor="0xFF8400" horizontalCenter="0" top="61" text="254" size="39" bold="true"/>
+		<e:Label fontFamily="Helvetica" bold="true" y="167" horizontalCenter="0" text="High score" textColor="8377047"/>
+		<e:Label id="highScoreLabel" fontFamily="Helvetica" bold="true" top="212" horizontalCenter="0" textColor="8377047" size="28" text="1560"/>
+		<e:Button id="returnButton" label="按钮" y="446" skinName="skin.components.ReturnSkin" x="235"/>
+		<e:Button id="retryButton" label="按钮" x="362" y="386" skinName="skin.components.RetryButtonSkin"/>
+	</e:Group>
+</e:Skin>

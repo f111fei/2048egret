@@ -1,0 +1,6 @@
+{"file":"icon.png","frames":{
+"level_easy":{"x":1,"y":1,"w":67,"h":67,"offX":0,"offY":0,"sourceW":67,"sourceH":67},
+"level_normal":{"x":1,"y":70,"w":67,"h":67,"offX":0,"offY":0,"sourceW":67,"sourceH":67},
+"level_special":{"x":1,"y":139,"w":67,"h":67,"offX":0,"offY":0,"sourceW":67,"sourceH":67},
+"loading_logo":{"x":1,"y":208,"w":480,"h":101,"offX":1,"offY":1,"sourceW":482,"sourceH":103},
+"loading_logo2":{"x":70,"y":1,"w":344,"h":142,"offX":0,"offY":0,"sourceW":344,"sourceH":142}}}

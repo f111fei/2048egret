@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset source="about_background"/>
+	<e:Label fontFamily="Arial" bold="true" textColor="0x004F5D" horizontalCenter="0" top="159" size="22" text="www.egret-labs.org"/>
+	<e:Label fontFamily="Arial" bold="true" horizontalCenter="0" textColor="0x004F5D" top="196" size="23" text="Copyright © 2014"/>
+	<e:UIAsset source="about_logo" horizontalCenter="0" top="24"/>
+	<e:UIAsset source="about_logo2" horizontalCenter="0" bottom="141"/>
+	<e:Button id="backButton" label="Back" width="446" horizontalCenter="0" bottom="49"/>
+	<e:Label textColor="9803157" fontFamily="Arial" size="12" horizontalCenter="0" bottom="21" text="version:1.0.0"/>
+	<e:Label text="Egret Games" textColor="20317" bold="true" fontFamily="Arial" horizontalCenter="0" top="118"/>
+</e:Skin>

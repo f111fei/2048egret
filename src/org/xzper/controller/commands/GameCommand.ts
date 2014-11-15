@@ -9,27 +9,33 @@ module game {
 		public static NAME:string = "GameCommand";
 		
 		/**
-		 * 游戏重置
+		 * 开始游戏
 		 */
-		public static GAME_RESET:string = "game_reset";
-		
-		/**
-		 * 处理移动后的事务 , body  {score , won , moved}
-		 */
-		public static USER_MOVED:string = "user_moved";
+		public static START_GAME:string = "start_game";
+
+        /**
+         * 结束游戏
+         */
+        public static FINISH_GAME:string = "finish_game";
+
+        /**
+         * 更新分数
+         */
+        public static UPDATE_SCORE:string = "update_score";
 		
 		/**
 		 * 执行移动 , body  0: 上, 1: 右, 2:下, 3: 左
 		 */
-		public static USER_MOVE:string = "user_move";
+		public static MOVE_TILE:string = "move_tile";
 		
 		/**
 		 * 注册消息
 		 */
 		public register():void{
-			this.facade.registerCommand(GameCommand.GAME_RESET , GameCommand); //注册游戏重置消息
-			this.facade.registerCommand(GameCommand.USER_MOVED , GameCommand); //注册移动后消息
-			this.facade.registerCommand(GameCommand.USER_MOVE , GameCommand);  //注册将要移动的消息
+			this.facade.registerCommand(GameCommand.START_GAME , GameCommand);
+            this.facade.registerCommand(GameCommand.FINISH_GAME , GameCommand);
+            this.facade.registerCommand(GameCommand.UPDATE_SCORE , GameCommand);
+			this.facade.registerCommand(GameCommand.MOVE_TILE , GameCommand);
 		}
 		
 		public execute(notification:puremvc.INotification):void{
@@ -37,30 +43,35 @@ module game {
 			var gridProxy:GridProxy = <GridProxy><any> (this.facade.retrieveProxy(GridProxy.NAME));
 			var data:any = notification.getBody();
 			switch(notification.getName()){
-				case GameCommand.GAME_RESET:{
-					gameProxy.reset();
+				case GameCommand.START_GAME:{
+                    this.sendNotification(SceneCommand.CHANGE,2);
+                    gameProxy.reset();
 					gridProxy.reset();
 					gridProxy.addStartTiles();
 					break;
 				}
-				case GameCommand.USER_MOVED:{
-					gameProxy.updateScore(data["score"]);
-					if(!data["won"]){
-						if(data["moved"]){
-							gridProxy.computerMove();
-						}
-					}else{
-						gameProxy.setResult(true);
-					}
-					if(!gridProxy.movesAvailable()){
-						gameProxy.setResult(false);
-					}
-					break;
+				case GameCommand.UPDATE_SCORE:{
+					gameProxy.updateScore(data);
+                    break;
 				}
-				case GameCommand.USER_MOVE:{
+				case GameCommand.MOVE_TILE:{
 					gridProxy.move(<number><any> data);
 					break;
 				}
+                case GameCommand.FINISH_GAME:{
+                    if(data)
+                    {
+                        gameProxy.setResult(data);
+                        this.sendNotification(SceneCommand.SHOW_END);
+                    }
+                    else
+                    {
+                        gameProxy.quit();
+                        gridProxy.reset();
+                        this.sendNotification(SceneCommand.CHANGE,1);
+                    }
+                    break;
+                }
 			}
 		}
 	}

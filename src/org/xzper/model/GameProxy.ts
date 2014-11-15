@@ -8,12 +8,13 @@ module game {
 		/**
 		 * 分数更新 , body  {totalScore:int , addScore:int}
 		 */
-		public static UPDATE_SCORE:string = "update_score";
+		public static SCORE_UPDATE:string = "score_update";
 
-		public static GAME_RESULT:string = "game_result";
-		
-		public static RESET_SCORE:string = "reset_score";
-		
+        /**
+         * 游戏重置
+         */
+		public static SCORE_RESET:string = "score_reset";
+
 		private won:boolean = false;
 		private over:boolean = false;
 		
@@ -30,15 +31,6 @@ module game {
 			return this._score;
 		}
 
-        private _highScore:number = 0;
-
-        /**
-         * 最高分
-         */
-        public get highScore():number{
-            return this._highScore;
-        }
-		
 		/**
 		 * 重置游戏数据
 		 */
@@ -47,7 +39,7 @@ module game {
 			this.won = false;
 			this.over = false;
 			CommonData.isRunning = true;
-			this.sendNotification(GameProxy.RESET_SCORE);
+			this.sendNotification(GameProxy.SCORE_RESET);
 		}
 
 		/**
@@ -56,9 +48,9 @@ module game {
 		public updateScore(addScore:number):void{
 			if(addScore != 0){
 				this._score += addScore;
-                if(this._score > this._highScore)
-                    this._highScore = this._score;
-				this.sendNotification(GameProxy.UPDATE_SCORE , {"totalScore":this.score , "highScore":this.highScore ,"addScore":addScore});
+                if(this._score > CommonData.highScore)
+                    CommonData.highScore = this._score;
+				this.sendNotification(GameProxy.SCORE_UPDATE , {"totalScore":this.score , "highScore":CommonData.highScore ,"addScore":addScore});
 			}
 		}
 		
@@ -72,7 +64,15 @@ module game {
 				this.over = true;
 			}
 			CommonData.isRunning = false;
-			this.sendNotification(GameProxy.GAME_RESULT , b);
 		}
+
+        /**
+         * 游戏中断退出
+         */
+        public quit():void{
+            this.reset();
+            this.over = true;
+            CommonData.isRunning = false;
+        }
 	}
 }

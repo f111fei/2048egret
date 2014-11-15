@@ -1,20 +1,84 @@
 {
 	"groups":[
 	{
-		"keys":"number,source",
+		"keys":"about_background,button_json,number_json,setting_background,settingscreen_json,source_json,start_background,start_logo,gamemenu_json,sence_background,tile_json,end_background",
 		"name":"preload"
+	},
+	{
+		"keys":"icon_json",
+		"name":"loading"
 	}],
 	"resources":[
 	{
-		"name":"number",
-		"subkeys":"number_1,number_5,number_7,number_9,number_10,number_12,number_11,number_2,number_4,number_13,number_8,number_3,number_6",
+		"name":"about_background",
+		"type":"image",
+		"url":"assets/about_background.png"
+	},
+	{
+		"name":"button_json",
+		"subkeys":"setting_normal,retry2_normal,pause_down,retry_normal,retry2_down,custom_normal,retry_down,return_down,music_normal,music_down,return_normal,music_non_down,setting_down,custom_down,sound_non_normal,music_non_normal,sound_normal,sound_non_down,play_normal,sound_down,icon_down,icon_normal,pause_normal,play_down",
+		"type":"sheet",
+		"url":"assets/button.json"
+	},
+	{
+		"name":"icon_json",
+		"subkeys":"level_normal,loading_logo2,loading_logo,level_easy,level_special",
+		"type":"sheet",
+		"url":"assets/icon.json"
+	},
+	{
+		"name":"number_json",
+		"subkeys":"number_6,number_10,number_11,number_8,number_1,number_5,number_9,number_4,number_12,number_2,number_13,number_7,number_3",
 		"type":"sheet",
 		"url":"assets/number.json"
 	},
 	{
-		"name":"source",
-		"subkeys":"menu,frontground,buttonDown,result_failed,background,result_sucess,backtile,buttonUp",
+		"name":"setting_background",
+		"type":"image",
+		"url":"assets/setting_background.png"
+	},
+	{
+		"name":"settingscreen_json",
+		"subkeys":"howtoplay_3,about_logo2,howtoplay_1,howtoplay_2,howtoplay_prev,howtoplay_4,about_logo,howtoplay_return,howtoplay_next",
+		"type":"sheet",
+		"url":"assets/settingscreen.json"
+	},
+	{
+		"name":"source_json",
+		"subkeys":"menu,buttonDown,result_sucess,background,result_failed,backtile,buttonUp,frontground",
 		"type":"sheet",
 		"url":"assets/source.json"
+	},
+	{
+		"name":"start_background",
+		"type":"image",
+		"url":"assets/start_background.png"
+	},
+	{
+		"name":"start_logo",
+		"type":"image",
+		"url":"assets/start_logo.png"
+	},
+	{
+		"name":"gamemenu_json",
+		"subkeys":"highscroce,level_small_easy,level_small_normal,level_small_special,menubackground",
+		"type":"sheet",
+		"url":"assets/gamemenu.json"
+	},
+	{
+		"name":"sence_background",
+		"type":"image",
+		"url":"assets/sence_background.png"
+	},
+	{
+		"name":"tile_json",
+		"subkeys":"tile_6,tile_11,tile_4,tile_8,tile_stone,tile_1,tile_2,tile_5,tile_10,tile_7,tile_3,tile_shovel,tile_9,tile_water,tile_stone2",
+		"type":"sheet",
+		"url":"assets/tile.json"
+	},
+	{
+		"name":"end_background",
+		"type":"image",
+		"url":"assets/end_background.png"
 	}]
 }

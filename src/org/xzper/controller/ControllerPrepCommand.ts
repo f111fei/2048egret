@@ -9,6 +9,7 @@ module game {
 		}
 		public execute(notification:puremvc.INotification):void{
             (new GameCommand()).register();
+            (new SceneCommand()).register();
         }
 	}
 }

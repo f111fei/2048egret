@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class Main extends egret.DisplayObjectContainer{
+class Main extends egret.Sprite{
 
     /**
      * 加载进度界面
@@ -34,24 +34,28 @@ class Main extends egret.DisplayObjectContainer{
 
     public constructor() {
         super();
-        this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
+        this.init();
     }
 
-    private onAddToStage(event:egret.Event){
-        //注入自定义的素材解析器
-        egret.Injector.mapClass("egret.gui.IAssetAdapter",AssetAdapter);
-        //注入自定义的皮肤解析器
-        egret.Injector.mapClass("egret.gui.ISkinAdapter",SkinAdapter);
+    private appContainer:game.AppContainer;
 
+    private init():void
+    {
         egret.Profiler.getInstance().run();
 
-        //设置加载进度界面
-        this.loadingView  = new LoadingUI();
-        this.stage.addChild(this.loadingView);
+        //注入自定义的解析器
+        egret.Injector.mapClass("egret.gui.IAssetAdapter",AssetAdapter);
+        egret.gui.Theme.load("resource/theme.thm");
+
+        //初始化UIStage
+        this.appContainer = new game.AppContainer();
+        this.addChild(this.appContainer);
+
         //初始化Resource资源加载库
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE,this.onConfigComplete,this);
         RES.loadConfig("resource/resource.json","resource/");
     }
+
     /**
      * 配置文件加载完成,开始预加载preload资源组。
      */
@@ -59,14 +63,20 @@ class Main extends egret.DisplayObjectContainer{
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE,this.onConfigComplete,this);
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE,this.onResourceLoadComplete,this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS,this.onResourceProgress,this);
+        RES.loadGroup("loading",1);
         RES.loadGroup("preload");
     }
     /**
      * preload资源组加载完成
      */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
-        if(event.groupName=="preload"){
-            this.stage.removeChild(this.loadingView);
+        if(event.groupName=="loading"){
+            //设置加载进度界面
+            this.loadingView  = new LoadingUI();
+            this.appContainer.addElement(this.loadingView);
+        }
+        else if(event.groupName=="preload"){
+            this.appContainer.removeElement(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE,this.onResourceLoadComplete,this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS,this.onResourceProgress,this);
             this.createGameScene();
@@ -85,8 +95,12 @@ class Main extends egret.DisplayObjectContainer{
      * 创建游戏场景
      */
     private createGameScene():void {
-        var appContainer:game.AppContainer = new game.AppContainer();
-        this.addChild(appContainer);
-        game.ApplicationFacade.getInstance().startUp(appContainer);
+        //注入自定义的弹出层管理器,写在这里是因为初始化的时候UIStage还没初始化完毕，直接new会报错
+        var popImpl:egret.gui.PopUpManagerImpl = new egret.gui.PopUpManagerImpl();
+        popImpl.modalAlpha = 0;
+        egret.Injector.mapValue("egret.gui.IPopUpManager", popImpl);
+
+        game.ApplicationFacade.getInstance().startUp(this.appContainer);
+        game.ApplicationFacade.getInstance().sendNotification(game.SceneCommand.CHANGE,1);
     }
 }

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset source="menubackground"/>
+	<e:Label id="scoreLabel" text="1000" textColor="1516360" italic="true" fontFamily="Arial" bold="true" size="45" horizontalCenter="0" top="21"/>
+	<e:Button id="pauseButton" label="按钮" skinName="skin.components.PauseButtonSkin" x="532" y="13"/>
+	<e:Group x="128" y="82">
+		<e:UIAsset source="highscroce" x="128" y="82"/>
+		<e:Label fontFamily="Arial" bold="true" textColor="6194096" x="154" y="84" text="HIGH SCORE:" size="14"/>
+		<e:Label id="highScoreLabel" fontFamily="Arial" bold="true" textColor="0x5E83B0" text="1560" x="231" y="84" size="14"/>
+		<e:Spacer height="20" width="134" x="129" y="34"/>
+		<e:UIAsset id="levelIcon" source="level_small_easy" x="302" y="85"/>
+		<e:Label id="levelLabel" fontFamily="Arial" bold="true" textColor="0x5E83B0" text="EASY" x="409" y="84" size="14"/>
+		<e:layout>
+			<e:HorizontalLayout verticalAlign="middle" gap="3"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>

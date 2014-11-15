@@ -6,22 +6,31 @@ module game {
 		public static NAME:string = "GridProxy";
 
         /**
-         * 重置格子
+         * 格子重置了
          */
-		public static RESET_TILE:string = "reset_tile";
-		public static MOVE_TILE:string = "move_tile";
-		public static INSERT_TILE:string = "insert_tile";
-		public static REMOVE_TILE:string = "remove_tile";
+		public static TILE_RESET:string = "tile_reset";
+        /**
+         * 格子移动了
+         */
+		public static TILE_MOVE:string = "tile_move";
+        /**
+         * 格子添加了
+         */
+		public static TILE_INSERT:string = "tile_insert";
+        /**
+         * 格子移除了
+         */
+		public static TILE_REMOVE:string = "tile_remove";
 
         /**
-         * 合并格子
+         * 格子合并了
          */
-        public static MERGED_TILE:string = "merged_tile";
+        public static TILE_MERGED:string = "tile_merged";
 		
 		private cells:Array<any> = [];
 		private startTiles:number = 2;
 		private playerTurn:boolean = true;
-		private size:number = CommonData.size;
+		private size:number;
 
 		public constructor(){
 			super(GridProxy.NAME);
@@ -31,6 +40,7 @@ module game {
 		 * 初始化数据
 		 */
 		public reset():void{
+            this.size = CommonData.size;
 			this.cells = [];
 			for (var x:number = 0; x < this.size; x++) {
 				var row:Array<any> = [];
@@ -40,7 +50,7 @@ module game {
 				}
 			}
 			this.playerTurn = true;
-			this.sendNotification(GridProxy.RESET_TILE);
+			this.sendNotification(GridProxy.TILE_RESET);
 		}
 		
 		/**
@@ -72,7 +82,7 @@ module game {
 						//更新分数
 						score += newValue;
 
-						if(newValue == CommonData.winValue){   //游戏结束
+						if(newValue >= CommonData.winValue){   //游戏结束
 							won = true;
 						}
 					} else {
@@ -85,9 +95,28 @@ module game {
 					}
 				}
 			}
-			this.sendNotification(GameCommand.USER_MOVED , {"won":won , "moved":moved , "score":score});
+
+            if(score>0)
+            {
+                this.sendNotification(GameCommand.UPDATE_SCORE,score);
+            }
+            if(!won)
+            {
+                if(moved)
+                {
+                    this.computerMove();
+                }
+                if(!this.movesAvailable()){
+                    this.sendNotification(GameCommand.FINISH_GAME , false);
+                }
+
+            }
+            else
+            {
+                this.sendNotification(GameCommand.FINISH_GAME , true);
+            }
 		}
-		
+
 		/**
 		 * 电脑添加一个格子
 		 */
@@ -263,7 +292,7 @@ module game {
             this.cells[tileFrom.x][tileFrom.y] = null;
             this.cells[tileTo.x][tileTo.y] = mergedTile;
 
-            this.sendNotification(GridProxy.MERGED_TILE , mergedTile.clone());
+            this.sendNotification(GridProxy.TILE_MERGED , mergedTile.clone());
         }
 
 
@@ -279,7 +308,7 @@ module game {
 			tile.x = x;
 			tile.y = y;
 			this.cells[tile.x][tile.y] = tile;
-			this.sendNotification(GridProxy.MOVE_TILE , tile.clone());
+			this.sendNotification(GridProxy.TILE_MOVE , tile.clone());
 		}
 		
 		/**
@@ -287,7 +316,7 @@ module game {
 		 */
 		private insertTile(tile:TileVO):void{
 			this.cells[tile.x][tile.y] = tile;
-			this.sendNotification(GridProxy.INSERT_TILE , tile.clone());
+			this.sendNotification(GridProxy.TILE_INSERT , tile.clone());
 		}
 		
 		/**
@@ -295,7 +324,7 @@ module game {
 		 */
 		private removeTile(tile:TileVO):void{
 			this.cells[tile.x][tile.y] = null;
-			this.sendNotification(GridProxy.REMOVE_TILE , tile.clone());
+			this.sendNotification(GridProxy.TILE_REMOVE , tile.clone());
 		}
 		
 		/**

@@ -25,25 +25,23 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class LoadingUI extends egret.Sprite{
+class LoadingUI extends egret.gui.SkinnableComponent{
 
     public constructor(){
         super();
-        this.createView();
-    }
-    private textField;
-
-    private createView():void {
-        this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.x = 120;
-        this.textField.y = 300;
-        this.textField.witdh = 480;
-        this.textField.height = 100;
-        this.textField.align = "middle";
+        this.skinName = skin.LoadingUISkin;
     }
 
-    public setProgress(current, total):void {
-        this.textField.text = "游戏加载中..." + current + "/" + total;
+    /**
+     * 进度条
+     */
+    public progressBar:egret.gui.ProgressBar;
+
+    public setProgress(current:number, total:number):void {
+        if(this.progressBar)
+        {
+            this.progressBar.maximum = total;
+            this.progressBar.value = current;
+        }
     }
 }

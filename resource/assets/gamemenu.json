@@ -1,0 +1,6 @@
+{"file":"gamemenu.png","frames":{
+"highscroce":{"x":1,"y":1,"w":24,"h":20,"offX":0,"offY":0,"sourceW":24,"sourceH":20},
+"level_small_easy":{"x":27,"y":1,"w":22,"h":22,"offX":0,"offY":0,"sourceW":22,"sourceH":22},
+"level_small_normal":{"x":1,"y":23,"w":22,"h":22,"offX":0,"offY":0,"sourceW":22,"sourceH":22},
+"level_small_special":{"x":51,"y":1,"w":22,"h":22,"offX":0,"offY":0,"sourceW":22,"sourceH":22},
+"menubackground":{"x":25,"y":25,"w":640,"h":117,"offX":0,"offY":0,"sourceW":640,"sourceH":117}}}

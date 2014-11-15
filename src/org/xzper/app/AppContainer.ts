@@ -2,35 +2,66 @@
 module game {
 
 	export class AppContainer extends egret.gui.UIStage{
-		public mainMenuUI:MainMenuUI;
-		public mainGameUI:MainGameUI;
-//
+		public startScreen:StartScreen = new StartScreen();
+		public gameScreen:GameScreen = new GameScreen();
+
 		public constructor(){
 			super();
-			this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
 		}
-		
-		private createCompleteEvent(event:egret.gui.UIEvent):void{
-			this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
-			ApplicationFacade.getInstance().registerMediator( new ApplicationMediator(this) );
 
-            //创建完成，游戏开始
-            ApplicationFacade.getInstance().sendNotification(GameCommand.GAME_RESET);
+        /**
+         * 进入开始页面
+         */
+        public enterStartScreen():void{
+            this.removeAllElements();
+            this.addElement(this.startScreen);
         }
 
-		public createChildren():void{
-			super.createChildren();
-			
-			this.mainMenuUI = new MainMenuUI();
-			this.mainMenuUI.top = 10;
-			this.mainMenuUI.horizontalCenter = 0;
-			this.addElement(this.mainMenuUI);
+        /**
+         * 进入游戏页面
+         */
+        public enterGameScreen():void{
+            this.removeAllElements();
+            this.addElement(this.gameScreen);
+            if(!this.gameScreen.initialized)
+            {
+                //在第一次进入游戏页面时立即验证，保证Mediator的注册是及时的，
+                //防止注册不及时导致无法接受消息的情况
+                this.gameScreen.validateNow();
+            }
+        }
 
-			this.mainGameUI = new MainGameUI();
-			this.mainGameUI.top = 140;
-			this.mainGameUI.horizontalCenter = 0;
-			this.addElement(this.mainGameUI);
-		}
-		
+        public settingWindow:SettingWindow;
+        /**
+         * 显示设置界面
+         */
+        public showSettingWindow(type:string = "setting"):void
+        {
+            if(!this.settingWindow)
+            {
+                this.settingWindow = new SettingWindow();
+            }
+            this.settingWindow.setWindowType(type);
+            egret.gui.PopUpManager.addPopUp(this.settingWindow,true);
+        }
+
+        public endWindow:EndWindow;
+        /**
+         * 显示结束窗口
+         */
+        public showEndWindow():void
+        {
+            if(!this.endWindow)
+            {
+                this.endWindow = new EndWindow();
+            }
+            egret.gui.PopUpManager.addPopUp(this.endWindow,true);
+            if(!this.endWindow.initialized)
+            {
+                //在第一次进入游戏页面时立即验证，保证Mediator的注册是及时的，
+                //防止注册不及时导致无法接受消息的情况
+                this.endWindow.validateNow();
+            }
+        }
 	}
 }

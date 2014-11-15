@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.ToggleButton"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="up"/>
+		<e:State name="down"/>
+		<e:State name="disabled"/>
+		<e:State name="upAndSelected"/>
+		<e:State name="downAndSelected"/>
+		<e:State name="disabledAndSelected"/>
+	</e:states>
+	<e:UIAsset source="sound_normal" left="0" right="0" top="0" bottom="0" source.down="sound_down" source.upAndSelected="sound_non_normal" source.downAndSelected="sound_non_down"/>
+</e:Skin>
