@@ -43,6 +43,8 @@ module game {
             }
             this.settingWindow.setWindowType(type);
             egret.gui.PopUpManager.addPopUp(this.settingWindow,true);
+            this.settingWindow.verticalCenter = -700;
+            egret.Tween.get(this.settingWindow).to({verticalCenter:0} , 500 , egret.Ease.backOut);
         }
 
         public endWindow:EndWindow;

@@ -1,3 +1,7 @@
 {
-	
+	"skins":
+	{
+		"egret.gui.Button":"skin.components.ButtonSkin",
+		"game.IconButton":"skin.components.IconButtonSkin"
+	}
 }

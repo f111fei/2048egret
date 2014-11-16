@@ -1,0 +1,16 @@
+{"file":"tile.png","frames":{
+"tile_water":{"x":1,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_1":{"x":1,"y":143,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_2":{"x":1,"y":285,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_3":{"x":143,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_4":{"x":143,"y":143,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_5":{"x":143,"y":285,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_6":{"x":285,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_7":{"x":285,"y":143,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_8":{"x":285,"y":285,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_9":{"x":427,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_10":{"x":427,"y":143,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_11":{"x":427,"y":285,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_shovel":{"x":569,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_stone":{"x":711,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140},
+"tile_stone2":{"x":853,"y":1,"w":140,"h":140,"offX":0,"offY":0,"sourceW":140,"sourceH":140}}}
