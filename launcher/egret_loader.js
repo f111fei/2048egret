@@ -33,7 +33,18 @@ egret_h5.startGame = function () {
 
     egret.StageDelegate.getInstance().setDesignSize(640, 960);
     context.stage = new egret.Stage();
-    var scaleMode =  egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? egret.StageScaleMode.SHOW_ALL : egret.StageScaleMode.SHOW_ALL;
+    var scaleMode;
+	if(egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE)
+	{
+		scaleMode = egret.StageScaleMode.SHOW_ALL;
+	}
+	else
+	{
+		if(document.documentElement.clientHeight>960)
+			scaleMode = egret.StageScaleMode.NO_SCALE;
+		else
+			scaleMode = egret.StageScaleMode.SHOW_ALL;
+	}
     context.stage.scaleMode = scaleMode;
 
     //WebGL是egret的Beta特性，默认关闭
