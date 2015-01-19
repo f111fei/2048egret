@@ -6,17 +6,25 @@ module game {
     /**
      * 游戏场景
      */
-    export class GameScene extends egret.gui.Group {
+    export class GameScene extends egret.gui.UIAsset {
 
         public constructor(){
             super();
             this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+            this.addContainer();
+        }
+
+        private addContainer():void{
+            this.tileGroup = new egret.Sprite();
+            this.source = this.tileGroup;
         }
 
         public createCompleteEvent(event:egret.gui.UIEvent):void{
             this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
             ApplicationFacade.getInstance().registerMediator( new GameSceneMediator(this) );
         }
+
+        private tileGroup:egret.Sprite;
 
         /**
          * 创建一个格子
@@ -29,9 +37,8 @@ module game {
             tile.width = tile.height = this.tileSize;
             tile.x = tileVO.x * (tile.width + this.gap) + tile.width/2;
             tile.y = tileVO.y * (tile.height + this.gap) + tile.height/2;
-            tile.includeInLayout = false;
             tile.visible = false;
-            this.tileGroup.addElement(tile);
+            this.tileGroup.addChild(tile);
             var showTile:Function = function():void{
                 tile.visible = true;
                 if(tileVO.merged){
@@ -47,8 +54,8 @@ module game {
          *获取指定位置的格子
          */
         public getTileUI(x:number , y:number):TileUI{
-            for (var i:number = 0; i < this.tileGroup.numElements; i++) {
-                var tile:TileUI = <TileUI><any> (this.tileGroup.getElementAt(i));
+            for (var i:number = 0; i < this.tileGroup.numChildren; i++) {
+                var tile:TileUI = <TileUI><any> (this.tileGroup.getChildAt(i));
                 if(tile.location.x == x && tile.location.y == y){
                     return tile;
                 }
@@ -63,7 +70,7 @@ module game {
             var tileFrom:TileUI = this.getTileUI(tileVO.previousPosition.x , tileVO.previousPosition.y);
             var tileTo:TileUI = this.getTileUI(tileVO.x , tileVO.y);
             if(tileFrom && tileTo){
-                this.tileGroup.setElementIndex(tileFrom,0);  //将要消失的格子沉底，
+                this.tileGroup.setChildIndex(tileFrom,0);  //将要消失的格子沉底，
                 var self:GameScene = this;
                 tileFrom.location.x = -1;
                 tileFrom.location.y = -1;
@@ -71,10 +78,10 @@ module game {
                 var moveComplete:Function = function(event:egret.Event):void{
                     tileFrom.removeEventListener("moveComplete" , moveComplete , self);
                     if(tileFrom.parent)
-                        self.tileGroup.removeElement(tileFrom);
+                        self.tileGroup.removeChild(tileFrom);
                     ObjectPool.getPool("game.TileUI").returnObject(tileFrom);   //回收到对象池
                     tileTo.value = tileVO.value;
-                    self.tileGroup.setElementIndex(tileTo,self.tileGroup.numElements-1);  //将要缩放的格子置顶，
+                    self.tileGroup.setChildIndex(tileTo,self.tileGroup.numChildren-1);  //将要缩放的格子置顶，
                     tileTo.playScale(true);
                 };
                 tileFrom.addEventListener("moveComplete" , moveComplete ,this);
@@ -87,7 +94,7 @@ module game {
         public removeTile(tileVO:TileVO):void{
             var tileUI:TileUI = this.getTileUI(tileVO.x , tileVO.y);
             if(tileUI){
-                this.tileGroup.removeElement(tileUI);
+                this.tileGroup.removeChild(tileUI);
                 ObjectPool.getPool("game.TileUI").returnObject(tileUI);
             }
         }
@@ -109,25 +116,13 @@ module game {
          * 清除所有
          */
         public clearTiles():void{
-            var num:number = this.tileGroup.numElements;
+            var num:number = this.tileGroup.numChildren;
             var tileUI:TileUI;
             for(var i:number = num - 1 ; i >= 0 ; i--)
             {
-                tileUI = <TileUI> this.tileGroup.removeElementAt(i);
+                tileUI = <TileUI> this.tileGroup.removeChildAt(i);
                 ObjectPool.getPool("game.TileUI").returnObject(tileUI);
             }
-        }
-
-        /**
-         * 格子容器
-         */
-        public tileGroup:egret.gui.Group;
-
-        public createChildren():void
-        {
-            super.createChildren();
-            this.tileGroup = new egret.gui.Group();
-            this.addElement(this.tileGroup);
         }
 
         /**

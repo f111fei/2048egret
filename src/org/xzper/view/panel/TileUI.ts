@@ -2,12 +2,13 @@
 
 module game {
 
-	export class TileUI extends egret.gui.UIAsset{
+	export class TileUI extends egret.Bitmap{
 
 		public constructor(){
 			super();
             //使描点在中心
-            this.anchorX = this.anchorY = 0.5;
+            this.anchorX = 0.5;
+			this.anchorY = 0.5;
             this.location = {"x":0 , "y":0};
 		}
 
@@ -16,7 +17,6 @@ module game {
          */
         public location:any;
 
-        private valueChanged:boolean;
         private _value:number;
         /**
          * 格子的数字
@@ -29,21 +29,13 @@ module game {
             if(value == this._value){
                 return;
             }
-            this.valueChanged = true;
             this._value = value;
-            this.invalidateProperties();
-        }
-
-        public commitProperties():void{
-            if(this.valueChanged){
-                this.valueChanged = false;
-                this.updateValue();
-            }
+            this.updateValue();
         }
 
         private updateValue():void{
             var mi:number = Math.log(this._value)/Math.log(2);
-            this.source = "tile_"+mi;
+            this.texture = RES.getRes("tile_"+mi)
         }
 		
 		/**
