@@ -10,6 +10,9 @@
 			"name": "core"
 		},
 		{
+			"name": "res"
+		},
+		{
 			"name": "gui"
 		},
 		{
@@ -17,5 +20,5 @@
 			"path": "."
 		}
 	],
-	"egret_version": "1.5.2"
+	"egret_version": "1.6.1"
 }
