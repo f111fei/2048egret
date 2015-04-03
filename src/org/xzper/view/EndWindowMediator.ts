@@ -31,7 +31,7 @@ module game {
 
         private buttonClick(event:egret.TouchEvent):void
         {
-            egret.gui.PopUpManager.removePopUp(this.endWindow);
+            this.endWindow.close();
             if(event.currentTarget == this.endWindow.retryButton)
             {
                 this.sendNotification(GameCommand.START_GAME);

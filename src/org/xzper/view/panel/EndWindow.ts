@@ -16,6 +16,26 @@ module game {
             this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
             ApplicationFacade.getInstance().registerMediator( new EndWindowMediator(this) );
         }
+		
+		public show():void
+		{
+            this.invalidateSkinState();
+            egret.gui.PopUpManager.addPopUp(this,true);
+        }
+
+        public close():void
+        {
+            egret.gui.PopUpManager.removePopUp(this);
+            this.validateSkinState();
+        }
+
+        public getCurrentSkinState():string
+        {
+            if(this.parent)
+                return "open";
+            else
+                return "normal";
+        }
 
         public totalScoreLabel:egret.gui.Label;
         public highScoreLabel:egret.gui.Label;

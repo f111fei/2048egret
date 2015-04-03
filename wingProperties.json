@@ -164,77 +164,6 @@
 				"name":"icon_json"
 			},
 			{
-				"children":[
-				{
-					"isFolder":false,
-					"key":"number_1",
-					"name":"number_1"
-				},
-				{
-					"isFolder":false,
-					"key":"number_10",
-					"name":"number_10"
-				},
-				{
-					"isFolder":false,
-					"key":"number_11",
-					"name":"number_11"
-				},
-				{
-					"isFolder":false,
-					"key":"number_12",
-					"name":"number_12"
-				},
-				{
-					"isFolder":false,
-					"key":"number_13",
-					"name":"number_13"
-				},
-				{
-					"isFolder":false,
-					"key":"number_2",
-					"name":"number_2"
-				},
-				{
-					"isFolder":false,
-					"key":"number_3",
-					"name":"number_3"
-				},
-				{
-					"isFolder":false,
-					"key":"number_4",
-					"name":"number_4"
-				},
-				{
-					"isFolder":false,
-					"key":"number_5",
-					"name":"number_5"
-				},
-				{
-					"isFolder":false,
-					"key":"number_6",
-					"name":"number_6"
-				},
-				{
-					"isFolder":false,
-					"key":"number_7",
-					"name":"number_7"
-				},
-				{
-					"isFolder":false,
-					"key":"number_8",
-					"name":"number_8"
-				},
-				{
-					"isFolder":false,
-					"key":"number_9",
-					"name":"number_9"
-				}],
-				"isFolder":false,
-				"key":"number_json",
-				"name":"number_json"
-			},
-			{
 				"isFolder":false,
 				"key":"setting_background",
 				"name":"setting_background"
@@ -269,52 +198,6 @@
 				"isFolder":false,
 				"key":"settingscreen_json",
 				"name":"settingscreen_json"
-			},
-			{
-				"children":[
-				{
-					"isFolder":false,
-					"key":"background",
-					"name":"background"
-				},
-				{
-					"isFolder":false,
-					"key":"backtile",
-					"name":"backtile"
-				},
-				{
-					"isFolder":false,
-					"key":"buttonDown",
-					"name":"buttonDown"
-				},
-				{
-					"isFolder":false,
-					"key":"buttonUp",
-					"name":"buttonUp"
-				},
-				{
-					"isFolder":false,
-					"key":"frontground",
-					"name":"frontground"
-				},
-				{
-					"isFolder":false,
-					"key":"menu",
-					"name":"menu"
-				},
-				{
-					"isFolder":false,
-					"key":"result_failed",
-					"name":"result_failed"
-				},
-				{
-					"isFolder":false,
-					"key":"result_sucess",
-					"name":"result_sucess"
-				}],
-				"isFolder":false,
-				"key":"source_json",
-				"name":"source_json"
 			},
 			{
 				"isFolder":false,
@@ -447,6 +330,21 @@
 				"isFolder":false,
 				"key":"end_background",
 				"name":"end_background"
+			},
+			{
+				"isFolder":false,
+				"key":"end_close_png",
+				"name":"end_close_png"
+			},
+			{
+				"isFolder":false,
+				"key":"end_cloud_png",
+				"name":"end_cloud_png"
+			},
+			{
+				"isFolder":false,
+				"key":"end_sun_png",
+				"name":"end_sun_png"
 			}]
 		}
 	},

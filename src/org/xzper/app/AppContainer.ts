@@ -57,7 +57,7 @@ module game {
             {
                 this.endWindow = new EndWindow();
             }
-            egret.gui.PopUpManager.addPopUp(this.endWindow,true);
+            this.endWindow.show();
             if(!this.endWindow.initialized)
             {
                 //在第一次进入游戏页面时立即验证，保证Mediator的注册是及时的，

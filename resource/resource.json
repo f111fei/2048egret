@@ -1,7 +1,7 @@
 {
 	"groups":[
 	{
-		"keys":"about_background,button_json,setting_background,settingscreen_json,start_background,start_logo,gamemenu_json,sence_background,tile_json,end_background",
+		"keys":"about_background,button_json,setting_background,settingscreen_json,start_background,start_logo,gamemenu_json,sence_background,tile_json,end_background,end_close_png,end_cloud_png,end_sun_png",
 		"name":"preload"
 	},
 	{
@@ -16,13 +16,13 @@
 	},
 	{
 		"name":"button_json",
-		"subkeys":"icon_normal,setting_down,music_normal,play_down,sound_non_normal,music_non_down,custom_down,return_down,setting_normal,icon_down,pause_normal,music_down,retry_normal,sound_non_down,music_non_normal,retry_down,pause_down,play_normal,retry2_normal,retry2_down,sound_normal,custom_normal,return_normal,sound_down",
+		"subkeys":"custom_down,custom_normal,icon_down,icon_normal,music_down,music_non_down,music_non_normal,music_normal,pause_down,pause_normal,play_down,play_normal,retry2_down,retry2_normal,retry_down,retry_normal,return_down,return_normal,setting_down,setting_normal,sound_down,sound_non_down,sound_non_normal,sound_normal",
 		"type":"sheet",
 		"url":"assets/button.json"
 	},
 	{
 		"name":"icon_json",
-		"subkeys":"level_easy,level_normal,loading_logo,loading_logo2,level_special",
+		"subkeys":"level_easy,level_normal,level_special,loading_logo,loading_logo2",
 		"type":"sheet",
 		"url":"assets/icon.json"
 	},
@@ -33,7 +33,7 @@
 	},
 	{
 		"name":"settingscreen_json",
-		"subkeys":"howtoplay_4,howtoplay_prev,howtoplay_2,howtoplay_return,howtoplay_1,howtoplay_3,about_logo2,howtoplay_next,about_logo",
+		"subkeys":"about_logo,about_logo2,howtoplay_1,howtoplay_2,howtoplay_3,howtoplay_4,howtoplay_next,howtoplay_prev,howtoplay_return",
 		"type":"sheet",
 		"url":"assets/settingscreen.json"
 	},
@@ -49,7 +49,7 @@
 	},
 	{
 		"name":"gamemenu_json",
-		"subkeys":"highscroce,level_small_normal,level_small_special,level_small_easy,menubackground",
+		"subkeys":"highscroce,level_small_easy,level_small_normal,level_small_special,menubackground",
 		"type":"sheet",
 		"url":"assets/gamemenu.json"
 	},
@@ -60,7 +60,7 @@
 	},
 	{
 		"name":"tile_json",
-		"subkeys":"tile_stone2,tile_10,tile_1,tile_11,tile_3,tile_8,tile_5,tile_water,tile_shovel,tile_2,tile_stone,tile_7,tile_4,tile_6,tile_9",
+		"subkeys":"tile_1,tile_10,tile_11,tile_2,tile_3,tile_4,tile_5,tile_6,tile_7,tile_8,tile_9,tile_shovel,tile_stone,tile_stone2,tile_water",
 		"type":"sheet",
 		"url":"assets/tile.json"
 	},
@@ -68,5 +68,20 @@
 		"name":"end_background",
 		"type":"image",
 		"url":"assets/end_background.png"
+	},
+	{
+		"name":"end_close_png",
+		"type":"image",
+		"url":"assets/end_close.png"
+	},
+	{
+		"name":"end_cloud_png",
+		"type":"image",
+		"url":"assets/end_cloud.png"
+	},
+	{
+		"name":"end_sun_png",
+		"type":"image",
+		"url":"assets/end_sun.png"
 	}]
 }
