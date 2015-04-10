@@ -95,10 +95,8 @@ class Main extends egret.Sprite{
      * 创建游戏场景
      */
     private createGameScene():void {
-        //注入自定义的弹出层管理器,写在这里是因为初始化的时候UIStage还没初始化完毕，直接new会报错
-        var popImpl:egret.gui.PopUpManagerImpl = new egret.gui.PopUpManagerImpl();
-        popImpl.modalAlpha = 0;
-        egret.Injector.mapValue("egret.gui.IPopUpManager", popImpl);
+        //设置模态层透明度,写在这里是因为初始化的时候UIStage还没初始化完毕，直接设置会报错
+        egret.gui.PopUpManager.modalAlpha = 0;
 
         game.ApplicationFacade.getInstance().startUp(this.appContainer);
         game.ApplicationFacade.getInstance().sendNotification(game.SceneCommand.CHANGE,1);
