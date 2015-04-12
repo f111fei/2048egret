@@ -34,7 +34,7 @@ module game {
             if(this.parent)
                 return "open";
             else
-                return "normal";
+                return "close";
         }
 
         public totalScoreLabel:egret.gui.Label;

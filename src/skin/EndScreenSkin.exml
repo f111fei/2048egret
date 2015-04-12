@@ -3,17 +3,17 @@
 	<w:HostComponent name="egret.gui.TitleWindow"/>
 	<w:Declarations/>
 	<e:states>
-		<e:State name="normal"/>
+		<e:State name="close"/>
 		<e:State name="open"/>
 	</e:states>
 	<e:Group id="group1" width="628" x="0" height="672" y="0">
-		<e:UIAsset id="uiasset1" source="end_background" x="0"/>
+		<e:UIAsset id="uiasset1" source="end_background" x.open="0"/>
 		<e:UIAsset source="end_close_png" x="518" y="0"/>
 		<e:Button skinName="skin.components.CloseButtonSkin" width="50" label="按钮" height="50" id="closeButton" right="33" top="21"/>
 		<e:Label fontFamily="Arial" top="23" horizontalCenter="-5" italic="true" textColor="0x09827E" text="Well Done!" bold="true"/>
 		<e:Group id="contentGroup" width="542" x="43" height="574" y="98" clipAndEnableScrolling="true">
-			<e:UIAsset id="uiasset2" source="end_sun_png" horizontalCenter="0" y="-263" y.open="-656"/>
-			<e:UIAsset id="uiasset3" source="end_cloud_png" y="110" x="69" x.open="-403"/>
+			<e:UIAsset id="sun" source="end_sun_png" horizontalCenter="0" y="-263" y.open="-656"/>
+			<e:UIAsset id="cloud" source="end_cloud_png" y="110" x.open="-403" x="69"/>
 			<e:Label id="label1" text="Total score" y="16" textColor="16745472" fontFamily="Helvetica" horizontalCenter="0.5" bold="true" alpha.open="0"/>
 			<e:Label id="totalScoreLabel" fontFamily="Helvetica" textColor="0xFF8400" horizontalCenter="0" top="61" text="254" size="39" bold="true" alpha.open="0"/>
 			<e:Label id="label2" fontFamily="Helvetica" bold="true" y="167" text="High score" textColor="8377047" alpha.open="0" x="195"/>
@@ -23,7 +23,7 @@
 		</e:Group>
 	</e:Group>
 	<e:transitions>
-		<e:Transition toState="open" fromState="normal">
+		<e:Transition fromState="close" toState="open">
 			<e:Parallel>
 				<e:Fade target="{label1}" alphaFrom="0" alphaTo="1" startDelay="500"/>
 				<e:Fade target="{totalScoreLabel}" alphaFrom="0" alphaTo="1" startDelay="500"/>
@@ -37,8 +37,8 @@
 					<e:Fade alphaTo="1" startDelay="1000" alphaFrom="0"/>
 					<e:Rotate angleTo="360" startDelay="1000" autoCenterTransform="true" angleFrom="0"/>
 				</e:Parallel>
-				<e:Move target="{uiasset2}" yTo="-263" startDelay="500" yFrom="-656"/>
-				<e:Move target="{uiasset3}" startDelay="800" xTo="69" xFrom="-403"/>
+				<e:Move target="{sun}" yTo="-263" startDelay="500" yFrom="-656"/>
+				<e:Move target="{cloud}" startDelay="800" xTo="69" xFrom="-403"/>
 				<e:Move id="moveEffect" target="{group1}" yFrom="-672" yTo="0">
 				</e:Move>
 			</e:Parallel>
