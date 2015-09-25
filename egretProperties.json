@@ -1,27 +1,32 @@
 {
-	"document_class": "Main",
 	"native": {
-		"path_ignore": [
-			"libs"
-		]
+		"path_ignore": []
 	},
+	"publish": {
+		"web": 0,
+		"native": 1,
+		"path": "bin-release"
+	},
+	"egret_version": "2.5.0",
 	"modules": [
 		{
-			"name": "core"
+			"name": "egret"
 		},
 		{
-			"name": "version_old"
+			"name": "game"
 		},
 		{
 			"name": "res"
+		},
+		{
+			"name": "tween"
 		},
 		{
 			"name": "gui"
 		},
 		{
 			"name": "puremvc",
-			"path": "."
+			"path": "modules/puremvc"
 		}
-	],
-	"egret_version": "2.0.0"
+	]
 }

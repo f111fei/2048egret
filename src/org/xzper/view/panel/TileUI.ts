@@ -7,8 +7,6 @@ module game {
 		public constructor(){
 			super();
             //使描点在中心
-            this.anchorX = 0.5;
-			this.anchorY = 0.5;
             this.location = {"x":0 , "y":0};
 		}
 

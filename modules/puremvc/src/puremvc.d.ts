@@ -262,3 +262,4 @@ declare module puremvc
         static NAME: string;
     }
 }
+

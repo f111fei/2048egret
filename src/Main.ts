@@ -34,17 +34,17 @@ class Main extends egret.Sprite{
 
     public constructor() {
         super();
-        this.init();
+        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.init, this)
     }
 
     private appContainer:game.AppContainer;
 
-    private init():void
-    {
-        egret.Profiler.getInstance().run();
+    private init(event:egret.Event):void {
+        //设置自定义的屏幕适配方式
+        egret.sys.screenAdapter = new AutoScreenAdapter();
 
         //注入自定义的解析器
-        egret.Injector.mapClass("egret.gui.IAssetAdapter",AssetAdapter);
+        egret.gui.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
         egret.gui.Theme.load("resource/theme.thm");
 
         //初始化UIStage
@@ -52,8 +52,8 @@ class Main extends egret.Sprite{
         this.addChild(this.appContainer);
 
         //初始化Resource资源加载库
-        RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE,this.onConfigComplete,this);
-        RES.loadConfig("resource/resource.json","resource/");
+        RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
+        RES.loadConfig("resource/resource.json", "resource/");
     }
 
     /**

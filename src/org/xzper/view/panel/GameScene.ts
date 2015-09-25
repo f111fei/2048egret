@@ -35,6 +35,7 @@ module game {
             tile.location.x = tileVO.x;
             tile.location.y = tileVO.y;
             tile.width = tile.height = this.tileSize;
+            tile.anchorOffsetX = tile.anchorOffsetY = this.tileSize/2;
             tile.x = tileVO.x * (tile.width + this.gap) + tile.width/2;
             tile.y = tileVO.y * (tile.height + this.gap) + tile.height/2;
             tile.visible = false;

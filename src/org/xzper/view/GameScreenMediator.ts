@@ -80,7 +80,8 @@ module game {
          */
         private updateWhenMouseUp():void
         {
-            var p:egret.Point = this.gamescreen.globalToLocal(this.movePoint.x, this.movePoint.y ,egret.Point.identity);
+            this.gamescreen.globalToLocal()
+            var p:egret.Point = this.gamescreen.globalToLocal(this.movePoint.x, this.movePoint.y);
             var offSetX:number = p.x - this.downPoint.x;
             var offSetY:number = p.y - this.downPoint.y;
 

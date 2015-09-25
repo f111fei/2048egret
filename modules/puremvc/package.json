@@ -1,0 +1,12 @@
+{
+	"name": "egret",
+	"version": "2.5.0",
+	"modules": [
+		{
+			"name": "puremvc",
+			"description": "puremvc",
+			"files": ["puremvc.d.ts", "puremvc.js"],
+			"root": "src"
+		}
+	]
+}
