@@ -19,7 +19,10 @@ Egret GUI 相关教程：
 
 2048是最近很火的一个小游戏，[原版](http://gabrielecirulli.github.io/2048/) 就是用JavaScript写的。恰巧最近Egret PublicBeta，观望和学习了一阵后，发现egret正好适合开发这类游戏。Egret使用TypeScript作为开发语言，最终编译为JavaScript，正好和原始版本PK一下。
 
-游戏预览：[点我体验](http://xzper.com/project/2048egret/)
+游戏预览：
+
+[2048egret](http://xzper.com/project/2048egret/)
+[PieceOfPie](http://xzper.com/project/pieceofpie/)
 
 **1.准备开始**
 
