@@ -22,6 +22,7 @@ Egret GUI 相关教程：
 游戏预览：
 
 [2048egret](http://xzper.com/project/2048egret/)
+
 [PieceOfPie](http://xzper.com/project/pieceofpie/)
 
 **1.准备开始**
