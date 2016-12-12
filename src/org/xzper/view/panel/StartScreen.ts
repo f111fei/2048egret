@@ -9,20 +9,20 @@ module game {
         public constructor() {
             super();
             this.skinName = skin.StartScreenSkin;
-            this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
+            this.addEventListener(egret.gui.UIEvent.CREATION_COMPLETE, this.createCompleteEvent, this);
         }
 
-        public createCompleteEvent(event:egret.gui.UIEvent):void{
-            this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE , this.createCompleteEvent, this);
-            ApplicationFacade.getInstance().registerMediator( new StartScreenMediator(this) );
+        public createCompleteEvent(event: egret.gui.UIEvent): void {
+            this.removeEventListener(egret.gui.UIEvent.CREATION_COMPLETE, this.createCompleteEvent, this);
+            ApplicationFacade.getInstance().registerMediator(new StartScreenMediator(this));
         }
 
-        public playButton:egret.gui.Button;
-        public settingButton:egret.gui.Button;
-        public levelButton:IconButton;
+        public playButton: egret.gui.Button;
+        public settingButton: egret.gui.Button;
+        public levelButton: IconButton;
 
 
-        public partAdded(partName:string, instance:any):void{
+        public partAdded(partName: string, instance: any): void {
             super.partAdded(partName, instance);
         }
     }

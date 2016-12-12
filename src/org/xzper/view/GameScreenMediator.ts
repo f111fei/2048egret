@@ -5,16 +5,15 @@
 
 module game {
 
-    export class GameScreenMediator extends puremvc.Mediator implements puremvc.IMediator{
-        public static NAME:string = "GameScreenMediator";
-        public constructor(viewComponent:any){
+    export class GameScreenMediator extends puremvc.Mediator implements puremvc.IMediator {
+        public static NAME: string = "GameScreenMediator";
+        public constructor(viewComponent: any) {
             super(GameScreenMediator.NAME, viewComponent);
 
             //为PC和移动端设置不同的移动策略
-            if(egret.MainContext.deviceType != egret.MainContext.DEVICE_MOBILE)
-            {
+            if (egret.MainContext.deviceType != egret.MainContext.DEVICE_MOBILE) {
                 var self = this;
-                document.addEventListener("keydown",function(event:KeyboardEvent){
+                document.addEventListener("keydown", function (event: KeyboardEvent) {
                     switch (event.keyCode) {
                         case 38:
                             self.doMove(0);
@@ -31,26 +30,24 @@ module game {
                     }
                 });
             }
-            else
-            {
-                this.gamescreen.addEventListener(egret.TouchEvent.TOUCH_BEGIN , this.mouseDownHandle , this)
+            else {
+                this.gamescreen.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.mouseDownHandle, this)
             }
         }
 
-        private downPoint:egret.Point;
-        private movePoint:egret.Point;
-        private mouseDownHandle(event:egret.TouchEvent):void
-        {
-            egret.gui.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE,this.stage_mouseMoveHandler,this);
-            egret.gui.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_END,this.stage_mouseUpHandler,this);
-            egret.gui.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,this.stage_mouseUpHandler,this);
+        private downPoint: egret.Point;
+        private movePoint: egret.Point;
+        private mouseDownHandle(event: egret.TouchEvent): void {
+            egret.gui.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.stage_mouseMoveHandler, this);
+            egret.gui.UIGlobals.stage.addEventListener(egret.TouchEvent.TOUCH_END, this.stage_mouseUpHandler, this);
+            egret.gui.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE, this.stage_mouseUpHandler, this);
 
             this.downPoint = this.gamescreen.globalToLocal(event.stageX, event.stageY);
         }
 
-        private needMove:boolean;
-        private stage_mouseMoveHandler(event:egret.TouchEvent):void{
-            if(!this.movePoint)
+        private needMove: boolean;
+        private stage_mouseMoveHandler(event: egret.TouchEvent): void {
+            if (!this.movePoint)
                 this.movePoint = new egret.Point();
             this.movePoint.x = event.stageX;
             this.movePoint.y = event.stageY;
@@ -59,7 +56,7 @@ module game {
             this.needMove = true;
         }
 
-        public stage_mouseUpHandler(event:egret.Event):void{
+        public stage_mouseUpHandler(event: egret.Event): void {
             egret.gui.UIGlobals.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,
                 this.stage_mouseMoveHandler,
                 this);
@@ -69,7 +66,7 @@ module game {
             egret.gui.UIGlobals.stage.addEventListener(egret.Event.LEAVE_STAGE,
                 this.stage_mouseUpHandler,
                 this);
-            if(this.needMove){
+            if (this.needMove) {
                 this.updateWhenMouseUp();
                 this.needMove = false;
             }
@@ -78,26 +75,25 @@ module game {
         /**
          * 移动设备上，判断移动方向
          */
-        private updateWhenMouseUp():void
-        {
+        private updateWhenMouseUp(): void {
             this.gamescreen.globalToLocal()
-            var p:egret.Point = this.gamescreen.globalToLocal(this.movePoint.x, this.movePoint.y);
-            var offSetX:number = p.x - this.downPoint.x;
-            var offSetY:number = p.y - this.downPoint.y;
+            var p: egret.Point = this.gamescreen.globalToLocal(this.movePoint.x, this.movePoint.y);
+            var offSetX: number = p.x - this.downPoint.x;
+            var offSetY: number = p.y - this.downPoint.y;
 
-            if(offSetY<0 && Math.abs(offSetY)>Math.abs(offSetX))  //上
+            if (offSetY < 0 && Math.abs(offSetY) > Math.abs(offSetX))  //上
             {
                 this.doMove(0);
             }
-            else if(offSetX>0 && offSetX>Math.abs(offSetY))  //右
+            else if (offSetX > 0 && offSetX > Math.abs(offSetY))  //右
             {
                 this.doMove(1);
             }
-            else if(offSetY>0 && offSetY>Math.abs(offSetX))  //下
+            else if (offSetY > 0 && offSetY > Math.abs(offSetX))  //下
             {
                 this.doMove(2);
             }
-            else if(offSetX<0 && Math.abs(offSetX)>Math.abs(offSetY))  //左
+            else if (offSetX < 0 && Math.abs(offSetX) > Math.abs(offSetY))  //左
             {
                 this.doMove(3);
             }
@@ -108,9 +104,8 @@ module game {
          * 移动格子
          * @param direction 方向 0上 1右 2下 3左
          */
-        private doMove(direction:number):void
-        {
-            if(CommonData.isRunning && (egret.getTimer() - this.lastMoveTime)>=150) {
+        private doMove(direction: number): void {
+            if (CommonData.isRunning && (egret.getTimer() - this.lastMoveTime) >= 150) {
                 switch (direction) {
                     case 0:
                         this.sendNotification(GameCommand.MOVE_TILE, 0);    //上
@@ -132,19 +127,19 @@ module game {
         /**
          * 上次移动的时间 ， 防止过快设置移动
          */
-        private lastMoveTime:number = 0;
+        private lastMoveTime: number = 0;
 
-        public listNotificationInterests():Array<any>{
+        public listNotificationInterests(): Array<any> {
             return [];
         }
 
-        public handleNotification(notification:puremvc.INotification):void{
-            switch(notification.getName()){
+        public handleNotification(notification: puremvc.INotification): void {
+            switch (notification.getName()) {
             }
         }
 
-        public get gamescreen():GameScreen{
-            return <GameScreen><any> (this.viewComponent);
+        public get gamescreen(): GameScreen {
+            return <GameScreen><any>(this.viewComponent);
         }
     }
 }

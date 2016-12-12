@@ -2,12 +2,12 @@
 
 module game {
 
-	export class StartupCommand extends puremvc.MacroCommand{
+	export class StartupCommand extends puremvc.MacroCommand {
 
-		public constructor(){
+		public constructor() {
 			super();
 		}
-		public initializeMacroCommand():void{
+		public initializeMacroCommand(): void {
 			this.addSubCommand(ControllerPrepCommand);
 			this.addSubCommand(ModelPrepCommand);
 			this.addSubCommand(ViewPrepCommand);

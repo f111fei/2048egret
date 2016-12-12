@@ -2,8 +2,8 @@
 
 module game {
 
-	export interface IApp{
-		enter():void;
-		destroy():void;
+	export interface IApp {
+		enter(): void;
+		destroy(): void;
 	}
 }

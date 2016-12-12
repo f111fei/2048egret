@@ -25,9 +25,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class LoadingUI extends egret.gui.SkinnableComponent{
+class LoadingUI extends egret.gui.SkinnableComponent {
 
-    public constructor(){
+    public constructor() {
         super();
         this.skinName = skin.LoadingUISkin;
     }
@@ -35,11 +35,10 @@ class LoadingUI extends egret.gui.SkinnableComponent{
     /**
      * 进度条
      */
-    public progressBar:egret.gui.ProgressBar;
+    public progressBar: egret.gui.ProgressBar;
 
-    public setProgress(current:number, total:number):void {
-        if(this.progressBar)
-        {
+    public setProgress(current: number, total: number): void {
+        if (this.progressBar) {
             this.progressBar.maximum = total;
             this.progressBar.value = current;
         }

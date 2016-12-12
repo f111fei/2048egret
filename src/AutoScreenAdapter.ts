@@ -19,17 +19,15 @@ class AutoScreenAdapter extends egret.HashObject implements egret.sys.IScreenAda
      * @param contentWidth 初始化内容宽度
      * @param contentHeight 初始化内容高度
      */
-    public calculateStageSize(scaleMode:string, screenWidth:number, screenHeight:number,
-                              contentWidth:number, contentHeight:number):egret.sys.StageDisplaySize {
+    public calculateStageSize(scaleMode: string, screenWidth: number, screenHeight: number,
+        contentWidth: number, contentHeight: number): egret.sys.StageDisplaySize {
 
 
-        if(egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE)
-        {
+        if (egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE) {
             scaleMode = egret.StageScaleMode.SHOW_ALL;
         }
-        else
-        {
-            if(screenHeight > contentHeight && screenWidth > contentWidth) {
+        else {
+            if (screenHeight > contentHeight && screenWidth > contentWidth) {
                 scaleMode = egret.StageScaleMode.NO_SCALE;
             }
             else
@@ -53,7 +51,7 @@ class AutoScreenAdapter extends egret.HashObject implements egret.sys.IScreenAda
                     displayHeight = Math.round(stageHeight * scaleX);
                 }
                 break;
-            default :
+            default:
                 break;
         }
         return {

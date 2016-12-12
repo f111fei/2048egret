@@ -7,54 +7,50 @@
 
 module game {
 
-    export class EndWindowMediator extends puremvc.Mediator implements puremvc.IMediator{
-        public static NAME:string = "EndWindowMediator";
+    export class EndWindowMediator extends puremvc.Mediator implements puremvc.IMediator {
+        public static NAME: string = "EndWindowMediator";
 
-        public constructor(viewComponent:any){
+        public constructor(viewComponent: any) {
             super(EndWindowMediator.NAME, viewComponent);
-            this.endWindow.closeButton.addEventListener(egret.TouchEvent.TOUCH_TAP , this.buttonClick, this);
-            this.endWindow.retryButton.addEventListener(egret.TouchEvent.TOUCH_TAP , this.buttonClick, this);
-            this.endWindow.returnButton.addEventListener(egret.TouchEvent.TOUCH_TAP , this.buttonClick, this);
-            this.endWindow.addEventListener(egret.Event.ADDED_TO_STAGE , this.initData , this);
+            this.endWindow.closeButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.buttonClick, this);
+            this.endWindow.retryButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.buttonClick, this);
+            this.endWindow.returnButton.addEventListener(egret.TouchEvent.TOUCH_TAP, this.buttonClick, this);
+            this.endWindow.addEventListener(egret.Event.ADDED_TO_STAGE, this.initData, this);
             this.initData();
         }
 
         /**
          * 初始化显示数据
          */
-        private initData(event:egret.Event = null):void
-        {
-            var proxy:GameProxy = <GameProxy><any>this.facade.retrieveProxy(GameProxy.NAME);
+        private initData(event: egret.Event = null): void {
+            var proxy: GameProxy = <GameProxy><any>this.facade.retrieveProxy(GameProxy.NAME);
             this.endWindow.highScoreLabel.text = CommonData.highScore.toString();
             this.endWindow.totalScoreLabel.text = proxy.score.toString();
         }
 
-        private buttonClick(event:egret.TouchEvent):void
-        {
+        private buttonClick(event: egret.TouchEvent): void {
             this.endWindow.close();
-            if(event.currentTarget == this.endWindow.retryButton)
-            {
+            if (event.currentTarget == this.endWindow.retryButton) {
                 this.sendNotification(GameCommand.START_GAME);
             }
-            else
-            {
+            else {
                 this.sendNotification(GameCommand.FINISH_GAME);
             }
         }
 
-        public listNotificationInterests():Array<any>{
+        public listNotificationInterests(): Array<any> {
             return [
             ];
         }
 
-        public handleNotification(notification:puremvc.INotification):void{
-            switch(notification.getName()){
+        public handleNotification(notification: puremvc.INotification): void {
+            switch (notification.getName()) {
 
             }
         }
 
-        public get endWindow():EndWindow{
-            return <EndWindow><any> (this.viewComponent);
+        public get endWindow(): EndWindow {
+            return <EndWindow><any>(this.viewComponent);
         }
     }
 }
