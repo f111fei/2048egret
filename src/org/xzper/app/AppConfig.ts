@@ -2,8 +2,8 @@
 
 module game {
 
-	export class AppConfig {
-		public constructor() {
-		}
-	}
+    export class AppConfig {
+        public constructor() {
+        }
+    }
 }
