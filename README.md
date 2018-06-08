@@ -43,7 +43,7 @@ Egret GUI 相关教程：
 
 接下来我们需要生成一个资源描述文件resource.json，在游戏开始之前读取这个json来加载对应的文件。egret的资源加载机制可以参考 [这里](https://github.com/egret-labs/egret-core/wiki/Using%20Resource%20System) 现在已经有 [工具](http://bbs.egret-labs.org/thread-48-1-1.html) 能自动生成这个resource.json了。按照下图配置。**注意：虽然我们的资源有图片，但是对应的json文件已经记录了图片的位置，所以在这个工具中我们不需要添加对应的图片只添加json文件就行了。**
 
-<center>![](http://xzper.qiniudn.com/2014/06/ResTool.png)</center>
+<p align="center"><image src="http://xzper.qiniudn.com/2014/06/ResTool.png" /></p>
 
 在项目初始化时，使用RES加载资源，简单明了。
 
